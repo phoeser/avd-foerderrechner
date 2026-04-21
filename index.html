@@ -5,411 +5,414 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AVD Förder-Rechner — ERGO Berater-Tool</title>
 <style>
-  /* ============ ERGO CI ============ */
+  /* =====================================================================
+     ERGO Corporate Design — AVD Förder-Rechner v1.1 (Basis)
+     ===================================================================== */
   :root {
-    --ergo-red: #E2001A;
-    --ergo-red-dark: #A8000F;
-    --ergo-red-light: #FCE6EA;
-    --ergo-black: #1A1A1A;
-    --ergo-grey: #707070;
-    --ergo-grey-light: #E5E5E5;
-    --ergo-bg: #F7F7F7;
-    --ergo-white: #FFFFFF;
-    --ergo-green: #2E7D32;
-    --ergo-amber: #ED6C02;
+    --ergo-red:        #E2001A;
+    --ergo-red-dark:   #B40014;
+    --ergo-red-light:  #FCE6EA;
+    --ergo-black:      #1A1A1A;
+    --ergo-grey-900:   #2E2E2E;
+    --ergo-grey-700:   #5A5A5A;
+    --ergo-grey-500:   #8B8B8B;
+    --ergo-grey-300:   #D4D4D4;
+    --ergo-grey-100:   #F0F0F0;
+    --ergo-grey-50:    #F8F8F8;
+    --ergo-white:      #FFFFFF;
+    --ergo-success:    #2E7D32;
+    --ergo-amber:      #B36B00;
+
+    --font-sans: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+    --radius-sm: 2px;
+    --radius-md: 3px;
+    --shadow-card: 0 1px 2px rgba(0,0,0,0.04), 0 1px 4px rgba(0,0,0,0.02);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { font-size: 16px; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--font-sans);
     color: var(--ergo-black);
-    background: var(--ergo-bg);
-    line-height: 1.5;
+    background: var(--ergo-grey-50);
+    line-height: 1.55;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+  button { font-family: inherit; }
+  input, select { font-family: inherit; }
 
-  /* ============ HEADER ============ */
+  /* ============================ HEADER ============================ */
   header.topbar {
     background: var(--ergo-white);
-    border-bottom: 4px solid var(--ergo-red);
-    padding: 16px 32px;
+    border-bottom: 3px solid var(--ergo-red);
+    padding: 14px 32px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: sticky; top: 0; z-index: 10;
+    position: sticky; top: 0; z-index: 20;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
   }
-  .brand {
-    display: flex; align-items: center; gap: 14px;
-  }
+  .brand { display: flex; align-items: center; gap: 14px; }
   .brand-logo {
-    width: 48px; height: 48px;
+    width: 50px; height: 32px;
     background: var(--ergo-red);
     color: var(--ergo-white);
     font-weight: 900;
-    font-size: 18px;
+    font-size: 15px;
     display: flex; align-items: center; justify-content: center;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    border-radius: var(--radius-sm);
   }
   .brand-text h1 {
-    font-size: 18px; font-weight: 700; color: var(--ergo-black);
+    font-size: 17px; font-weight: 700; color: var(--ergo-black);
+    line-height: 1.2;
   }
   .brand-text .sub {
-    font-size: 13px; color: var(--ergo-grey); font-weight: 400;
+    font-size: 12px; color: var(--ergo-grey-700); font-weight: 400;
+    margin-top: 2px;
   }
   .badge-internal {
     background: var(--ergo-black);
     color: var(--ergo-white);
-    font-size: 11px;
-    letter-spacing: 1.2px;
+    font-size: 10.5px;
+    letter-spacing: 1.5px;
     padding: 6px 12px;
     text-transform: uppercase;
     font-weight: 700;
+    border-radius: var(--radius-sm);
   }
 
-  /* ============ HERO ============ */
+  /* ============================ HERO ============================ */
   .hero {
-    background: linear-gradient(135deg, var(--ergo-red) 0%, var(--ergo-red-dark) 100%);
+    background: var(--ergo-red);
     color: var(--ergo-white);
-    padding: 36px 32px;
+    padding: 32px 32px 28px;
   }
-  .hero-inner { max-width: 1360px; margin: 0 auto; }
+  .hero-inner { max-width: 1280px; margin: 0 auto; }
   .hero .eyebrow {
-    font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
-    opacity: 0.9; margin-bottom: 10px; font-weight: 600;
+    font-size: 11px; letter-spacing: 2.2px; text-transform: uppercase;
+    opacity: 0.92; margin-bottom: 8px; font-weight: 700;
   }
   .hero h2 {
-    font-size: 30px; font-weight: 800; margin-bottom: 8px;
+    font-size: 28px; font-weight: 800; margin-bottom: 8px; line-height: 1.2;
   }
-  .hero p { font-size: 15px; opacity: 0.95; max-width: 900px; }
+  .hero p {
+    font-size: 14.5px;
+    opacity: 0.95;
+    max-width: 780px;
+    line-height: 1.55;
+  }
 
-  /* ============ LAYOUT ============ */
+  /* ============================ LAYOUT ============================ */
   .container {
-    max-width: 1360px;
+    max-width: 1280px;
     margin: 0 auto;
     padding: 28px 32px 60px;
   }
   .grid {
     display: grid;
-    grid-template-columns: 420px 1fr;
+    grid-template-columns: 400px 1fr;
     gap: 28px;
   }
   @media (max-width: 980px) {
     .grid { grid-template-columns: 1fr; }
   }
 
-  /* ============ CARDS ============ */
+  /* ============================ CARDS ============================ */
   .card {
     background: var(--ergo-white);
-    border: 1px solid var(--ergo-grey-light);
-    padding: 24px;
+    border: 1px solid var(--ergo-grey-300);
+    border-radius: var(--radius-md);
+    padding: 22px 24px;
     margin-bottom: 20px;
+    box-shadow: var(--shadow-card);
   }
   .card h3 {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     color: var(--ergo-black);
-    margin-bottom: 16px;
-    padding-bottom: 10px;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
     border-bottom: 2px solid var(--ergo-red);
-    display: flex; align-items: center; gap: 8px;
+    display: flex; align-items: center; gap: 10px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
   }
   .card h3 .icon {
-    display: inline-flex; width: 22px; height: 22px;
-    background: var(--ergo-red); color: white;
+    display: inline-flex; width: 24px; height: 24px;
+    background: var(--ergo-red); color: var(--ergo-white);
     align-items: center; justify-content: center;
     font-size: 12px; font-weight: 700;
+    border-radius: var(--radius-sm);
+    letter-spacing: 0;
   }
 
-  /* ============ FORM ============ */
-  .form-row {
-    margin-bottom: 14px;
-  }
-  .form-row label {
+  /* ============================ FORM ============================ */
+  .form-row { margin-bottom: 16px; }
+  .form-row:last-child { margin-bottom: 0; }
+
+  .form-row label.field-label {
     display: block;
-    font-size: 13px;
+    font-size: 12.5px;
     font-weight: 600;
-    color: var(--ergo-black);
-    margin-bottom: 6px;
+    color: var(--ergo-grey-900);
+    margin-bottom: 7px;
+    letter-spacing: 0.1px;
   }
-  .form-row label .hint {
+  .form-row label.field-label .hint {
     font-weight: 400;
-    color: var(--ergo-grey);
+    color: var(--ergo-grey-500);
     font-size: 11px;
     margin-left: 6px;
   }
+
   .form-row input[type="number"],
   .form-row input[type="text"],
   .form-row select {
     width: 100%;
     padding: 10px 12px;
-    border: 1px solid var(--ergo-grey-light);
+    border: 1px solid var(--ergo-grey-300);
+    border-radius: var(--radius-sm);
     font-size: 14px;
-    font-family: inherit;
     color: var(--ergo-black);
     background: var(--ergo-white);
-    transition: border-color 0.15s;
+    transition: border-color 0.15s, box-shadow 0.15s;
   }
   .form-row input:focus,
   .form-row select:focus {
     outline: none;
     border-color: var(--ergo-red);
-    box-shadow: 0 0 0 2px var(--ergo-red-light);
+    box-shadow: 0 0 0 3px var(--ergo-red-light);
   }
-  .form-row .input-group {
+
+  .input-group {
     display: flex; align-items: stretch;
   }
-  .form-row .input-group input {
+  .input-group input {
     flex: 1;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
   }
-  .form-row .input-group .suffix {
-    background: var(--ergo-bg);
-    border: 1px solid var(--ergo-grey-light);
+  .input-group .suffix {
+    background: var(--ergo-grey-50);
+    border: 1px solid var(--ergo-grey-300);
     border-left: none;
     padding: 0 14px;
     display: flex; align-items: center;
-    font-size: 13px; color: var(--ergo-grey);
+    font-size: 12.5px; color: var(--ergo-grey-700);
     font-weight: 600;
+    border-top-right-radius: var(--radius-sm);
+    border-bottom-right-radius: var(--radius-sm);
   }
+
   .slider-row {
     display: flex; align-items: center; gap: 12px;
   }
   .slider-row input[type="range"] {
     flex: 1; accent-color: var(--ergo-red);
+    height: 4px;
   }
   .slider-row .slider-value {
-    min-width: 60px; text-align: right;
+    min-width: 58px; text-align: right;
     font-weight: 700; color: var(--ergo-red);
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
   }
-  .toggle-group {
-    display: flex; gap: 0;
-    border: 1px solid var(--ergo-grey-light);
+
+  /* Segmented Control — Produkt/Rendite-Auswahl */
+  .segment {
+    display: inline-flex;
+    border: 1px solid var(--ergo-grey-300);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    width: 100%;
+    background: var(--ergo-grey-50);
   }
-  .toggle-group button {
+  .segment button {
     flex: 1;
-    padding: 10px 8px;
-    background: var(--ergo-white);
+    padding: 10px 12px;
+    background: transparent;
     border: none;
-    border-right: 1px solid var(--ergo-grey-light);
-    font-family: inherit;
-    font-size: 13px;
+    border-right: 1px solid var(--ergo-grey-300);
+    font-size: 12.5px;
     font-weight: 600;
-    color: var(--ergo-grey);
+    color: var(--ergo-grey-700);
     cursor: pointer;
-    transition: all 0.15s;
+    transition: background 0.15s, color 0.15s;
+    letter-spacing: 0.2px;
+    position: relative;
   }
-  .toggle-group button:last-child { border-right: none; }
-  .toggle-group button.active {
+  .segment button:last-child { border-right: none; }
+  .segment button.active {
     background: var(--ergo-red);
     color: var(--ergo-white);
   }
-  .toggle-group button:hover:not(.active) {
+  .segment button:hover:not(.active):not(:disabled) {
     background: var(--ergo-red-light);
     color: var(--ergo-black);
+  }
+  .segment button:disabled {
+    color: var(--ergo-grey-500);
+    cursor: not-allowed;
+    background: var(--ergo-grey-50);
+  }
+  .segment button .coming-soon {
+    display: block;
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--ergo-amber);
+    margin-top: 2px;
   }
 
   .checkbox-row {
     display: flex; align-items: center; gap: 10px;
-    padding: 10px; background: var(--ergo-bg);
-    border: 1px solid var(--ergo-grey-light);
+    padding: 10px 12px;
+    background: var(--ergo-grey-50);
+    border: 1px solid var(--ergo-grey-300);
+    border-radius: var(--radius-sm);
     cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
   }
-  .checkbox-row input { width: 16px; height: 16px; accent-color: var(--ergo-red); }
+  .checkbox-row:hover {
+    border-color: var(--ergo-red);
+    background: var(--ergo-red-light);
+  }
+  .checkbox-row input { width: 16px; height: 16px; accent-color: var(--ergo-red); cursor: pointer; }
   .checkbox-row label {
     margin: 0; cursor: pointer;
-    font-size: 13px; font-weight: 600;
+    font-size: 12.5px; font-weight: 600;
+    color: var(--ergo-grey-900);
   }
 
-  /* ============ RESULTS ============ */
+  /* ============================ KPIs ============================ */
   .kpi-row {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
-    margin-bottom: 22px;
+    gap: 12px;
+    margin-bottom: 20px;
   }
   @media (max-width: 780px) {
     .kpi-row { grid-template-columns: repeat(2, 1fr); }
   }
   .kpi {
     background: var(--ergo-white);
-    border: 1px solid var(--ergo-grey-light);
-    border-top: 3px solid var(--ergo-red);
-    padding: 16px 18px;
+    border: 1px solid var(--ergo-grey-300);
+    border-top: 3px solid var(--ergo-grey-300);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
   }
-  .kpi.accent { border-top-color: var(--ergo-red); background: var(--ergo-red-light); }
+  .kpi.accent {
+    border-top-color: var(--ergo-red);
+    background: var(--ergo-red-light);
+  }
   .kpi .kpi-label {
-    font-size: 11px; letter-spacing: 1.5px;
-    text-transform: uppercase; color: var(--ergo-grey); font-weight: 700;
+    font-size: 10.5px; letter-spacing: 1.3px;
+    text-transform: uppercase; color: var(--ergo-grey-700); font-weight: 700;
     margin-bottom: 6px;
   }
   .kpi .kpi-value {
-    font-size: 26px; font-weight: 800; color: var(--ergo-red); line-height: 1.1;
+    font-size: 24px; font-weight: 800; color: var(--ergo-red); line-height: 1.1;
+    font-variant-numeric: tabular-nums;
   }
   .kpi .kpi-sub {
-    font-size: 12px; color: var(--ergo-grey); margin-top: 4px;
+    font-size: 11.5px; color: var(--ergo-grey-700); margin-top: 4px;
   }
 
+  /* ============================ TABLE ============================ */
   table.breakdown {
     width: 100%;
     border-collapse: collapse;
-    font-size: 14px;
+    font-size: 13.5px;
+    border: 1px solid var(--ergo-grey-300);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
   }
   table.breakdown th {
     text-align: left;
-    padding: 10px 12px;
+    padding: 10px 14px;
     background: var(--ergo-black);
     color: var(--ergo-white);
-    font-size: 12px;
-    letter-spacing: 0.8px;
+    font-size: 11px;
+    letter-spacing: 1px;
     text-transform: uppercase;
     font-weight: 700;
   }
   table.breakdown th.num { text-align: right; }
   table.breakdown td {
-    padding: 11px 12px;
-    border-bottom: 1px solid var(--ergo-grey-light);
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--ergo-grey-100);
   }
+  table.breakdown tbody tr:last-child td { border-bottom: none; }
   table.breakdown td.num {
-    text-align: right; font-variant-numeric: tabular-nums; font-weight: 600;
-  }
-  table.breakdown tr.total td {
-    border-top: 2px solid var(--ergo-red);
-    border-bottom: 2px solid var(--ergo-red);
-    background: var(--ergo-red-light);
-    font-weight: 800;
-    font-size: 15px;
-  }
-  table.breakdown tr.subtle td { color: var(--ergo-grey); }
-
-  /* Compare Basis vs Premium */
-  .compare-grid {
-    display: grid; grid-template-columns: 1fr 1fr auto;
-    gap: 0;
-    border: 1px solid var(--ergo-grey-light);
-  }
-  .compare-cell {
-    padding: 14px 16px;
-    border-bottom: 1px solid var(--ergo-grey-light);
-    font-size: 14px;
-  }
-  .compare-cell.header {
-    background: var(--ergo-black);
-    color: var(--ergo-white);
-    font-weight: 700;
-    font-size: 12px;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-  }
-  .compare-cell.header.premium {
-    background: var(--ergo-red);
-  }
-  .compare-cell.label {
-    background: var(--ergo-bg);
-    font-weight: 600;
-  }
-  .compare-cell.num {
     text-align: right;
     font-variant-numeric: tabular-nums;
     font-weight: 600;
   }
-  .compare-cell.delta {
+  table.breakdown tr.total td {
+    border-top: 2px solid var(--ergo-red);
     background: var(--ergo-red-light);
+    font-weight: 800;
+    font-size: 14px;
     color: var(--ergo-red-dark);
-    font-weight: 800;
-    text-align: right;
-    font-size: 13px;
-    min-width: 110px;
   }
-  .compare-cell.total {
-    background: var(--ergo-red);
-    color: var(--ergo-white);
-    font-weight: 800;
-  }
+  table.breakdown tr.subtle td { color: var(--ergo-grey-700); font-size: 12px; }
 
-  /* Sales hints */
+  /* ============================ HINTS ============================ */
   .sales-hint {
-    background: #FFF8E1;
+    background: #FFF7E6;
     border-left: 4px solid var(--ergo-amber);
+    border-radius: var(--radius-sm);
     padding: 14px 18px;
     margin-top: 14px;
-    font-size: 13.5px;
+    font-size: 13px;
   }
   .sales-hint .hint-title {
     font-weight: 700;
     color: var(--ergo-amber);
-    font-size: 11px;
-    letter-spacing: 1.5px;
+    font-size: 10.5px;
+    letter-spacing: 1.4px;
     text-transform: uppercase;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
   .sales-hint ul { list-style: none; padding: 0; }
   .sales-hint ul li {
-    padding: 4px 0 4px 18px;
+    padding: 5px 0 5px 18px;
     position: relative;
+    line-height: 1.5;
   }
   .sales-hint ul li::before {
-    content: "►";
-    position: absolute; left: 0;
+    content: "▶";
+    position: absolute; left: 0; top: 5px;
     color: var(--ergo-amber);
-    font-size: 11px;
+    font-size: 9px;
   }
 
-  .warning-hint {
+  .info-hint {
     background: var(--ergo-red-light);
     border-left: 4px solid var(--ergo-red);
+    border-radius: var(--radius-sm);
     padding: 12px 18px;
     margin-top: 14px;
-    font-size: 13px;
+    font-size: 12.5px;
     color: var(--ergo-red-dark);
     font-weight: 600;
   }
 
-  /* Footer / Actions */
-  .actions-bar {
-    display: flex; gap: 12px; margin-top: 20px;
-    flex-wrap: wrap;
+  .notice {
+    background: var(--ergo-grey-50);
+    border: 1px dashed var(--ergo-grey-300);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-size: 11.5px;
+    color: var(--ergo-grey-700);
+    margin-top: 10px;
+    line-height: 1.5;
   }
-  .btn {
-    padding: 12px 22px;
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 700;
-    border: none;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: background 0.15s;
-  }
-  .btn-primary {
-    background: var(--ergo-red); color: var(--ergo-white);
-  }
-  .btn-primary:hover { background: var(--ergo-red-dark); }
-  .btn-secondary {
-    background: var(--ergo-white); color: var(--ergo-black);
-    border: 2px solid var(--ergo-black);
-  }
-  .btn-secondary:hover { background: var(--ergo-black); color: var(--ergo-white); }
+  .notice strong { color: var(--ergo-grey-900); }
 
-  footer.disclaimer {
-    max-width: 1360px; margin: 0 auto;
-    padding: 28px 32px;
-    font-size: 12px;
-    color: var(--ergo-grey);
-    border-top: 1px solid var(--ergo-grey-light);
-    margin-top: 28px;
-    line-height: 1.6;
-  }
-  footer.disclaimer strong { color: var(--ergo-black); }
-
-  /* Print */
-  @media print {
-    header.topbar, .hero, .actions-bar { display: none; }
-    body { background: white; }
-    .card { border: 1px solid #ccc; page-break-inside: avoid; }
-    .container { padding: 0; }
-  }
-
-  /* Scenario bars */
+  /* ============================ SCENARIO BARS ============================ */
   .scenario-bars {
     display: grid;
     grid-template-columns: 1fr;
@@ -417,27 +420,78 @@
     margin-top: 8px;
   }
   .scenario-bar {
-    display: grid; grid-template-columns: 140px 1fr 140px;
+    display: grid; grid-template-columns: 180px 1fr 140px;
     align-items: center; gap: 14px;
   }
   .scenario-bar .s-label {
     font-size: 13px; font-weight: 600;
+    color: var(--ergo-grey-900);
   }
   .scenario-bar .s-track {
-    background: var(--ergo-grey-light);
+    background: var(--ergo-grey-100);
     height: 22px;
     position: relative;
     overflow: hidden;
+    border-radius: var(--radius-sm);
   }
   .scenario-bar .s-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--ergo-red) 0%, var(--ergo-red-dark) 100%);
     transition: width 0.5s ease;
   }
   .scenario-bar .s-value {
     font-size: 14px; font-weight: 800; text-align: right;
     font-variant-numeric: tabular-nums;
-    color: var(--ergo-red);
+  }
+
+  /* ============================ ACTIONS ============================ */
+  .actions-bar {
+    display: flex; gap: 10px; margin-top: 22px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    padding: 12px 22px;
+    font-size: 13px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    transition: background 0.15s, color 0.15s;
+    border-radius: var(--radius-sm);
+  }
+  .btn-primary { background: var(--ergo-red); color: var(--ergo-white); }
+  .btn-primary:hover { background: var(--ergo-red-dark); }
+  .btn-secondary {
+    background: var(--ergo-white); color: var(--ergo-black);
+    border: 2px solid var(--ergo-black);
+  }
+  .btn-secondary:hover { background: var(--ergo-black); color: var(--ergo-white); }
+
+  /* ============================ FOOTER ============================ */
+  footer.disclaimer {
+    max-width: 1280px; margin: 0 auto;
+    padding: 28px 32px;
+    font-size: 11.5px;
+    color: var(--ergo-grey-700);
+    border-top: 1px solid var(--ergo-grey-300);
+    margin-top: 28px;
+    line-height: 1.6;
+  }
+  footer.disclaimer strong { color: var(--ergo-black); }
+
+  /* ============================ PRINT ============================ */
+  @media print {
+    header.topbar, .hero, .actions-bar { display: none; }
+    body { background: var(--ergo-white); }
+    .card {
+      border: 1px solid #AAA;
+      page-break-inside: avoid;
+      box-shadow: none;
+    }
+    .container { padding: 0; max-width: 100%; }
+    .grid { display: block; }
+    .col-left { margin-bottom: 20px; }
+    .kpi-value { color: #000; }
   }
 </style>
 </head>
@@ -448,7 +502,7 @@
     <div class="brand-logo">ERGO</div>
     <div class="brand-text">
       <h1>Altersvorsorgedepot — Förder-Rechner</h1>
-      <div class="sub">Berater-Tool · Version 1.0 · Stand 04/2026</div>
+      <div class="sub">Berater-Tool · Version 1.1 · Stand 04/2026</div>
     </div>
   </div>
   <div class="badge-internal">Internes Tool</div>
@@ -457,59 +511,77 @@
 <section class="hero">
   <div class="hero-inner">
     <div class="eyebrow">Neu ab 01.01.2027 · Nachfolger der Riester-Rente</div>
-    <h2>Förderung, Kombi-Vorteil und Ablaufleistung in 60 Sekunden.</h2>
-    <p>Rechne individuelle Kunden-Szenarien durch — staatliche Zulagen, Steuervorteil und Ablaufleistung für Basis und Basis + Premium im Vergleich. Inklusive Verkaufsargumenten für das Beratungsgespräch.</p>
+    <h2>Förderung und Ablaufleistung in 60 Sekunden.</h2>
+    <p>Individuelle Kunden-Szenarien durchrechnen — staatliche Zulagen, Steuervorteil und Ablaufleistung nach dem Altersvorsorgereformgesetz vom 27.03.2026. Inklusive Beraterhinweisen für das Kundengespräch.</p>
   </div>
 </section>
 
 <main class="container">
   <div class="grid">
 
-    <!-- ============ LEFT: INPUTS ============ -->
+    <!-- =================== LEFT: INPUTS =================== -->
     <div class="col-left">
 
       <div class="card">
-        <h3><span class="icon">1</span> Kunde</h3>
+        <h3><span class="icon">1</span> Produktvariante</h3>
 
         <div class="form-row">
-          <label>Bruttojahreseinkommen
-            <span class="hint">(Steuerliche Bemessungsgrundlage)</span>
+          <div class="segment" id="product-toggle" role="group" aria-label="Produktvariante">
+            <button type="button" data-product="basis" class="active" aria-pressed="true">AVD Basis</button>
+            <button type="button" data-product="premium" disabled aria-disabled="true" title="Premium-Variante folgt im Q2 2027">
+              AVD Premium
+              <span class="coming-soon">ab Q2 2027</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="notice">
+          <strong>Hinweis:</strong> Der Rechner bildet aktuell nur das <strong>AVD Basis-Depot</strong> (ETF/Fonds-Sparplan mit gesetzlicher Förderung) ab. Die ERGO Premium-Variante mit persönlichem Berater, Rebalancing und Ablauf-Management folgt separat.
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><span class="icon">2</span> Kunde</h3>
+
+        <div class="form-row">
+          <label class="field-label" for="income">Bruttojahreseinkommen
+            <span class="hint">(steuerliche Bemessungsgrundlage)</span>
           </label>
           <div class="input-group">
-            <input type="number" id="income" value="48000" min="0" step="1000">
+            <input type="number" id="income" value="48000" min="0" max="500000" step="1000">
             <div class="suffix">€ / Jahr</div>
           </div>
         </div>
 
         <div class="form-row">
-          <label>Alter heute</label>
+          <label class="field-label" for="age">Alter heute</label>
           <div class="slider-row">
-            <input type="range" id="age" value="35" min="18" max="60" step="1">
+            <input type="range" id="age" value="35" min="18" max="60" step="1" aria-describedby="age-v">
             <div class="slider-value"><span id="age-v">35</span> J.</div>
           </div>
         </div>
 
         <div class="form-row">
-          <label>Rentenbeginn (Alter)</label>
+          <label class="field-label" for="retire">Rentenbeginn (Alter)</label>
           <div class="slider-row">
-            <input type="range" id="retire" value="67" min="62" max="70" step="1">
+            <input type="range" id="retire" value="67" min="62" max="70" step="1" aria-describedby="retire-v">
             <div class="slider-value"><span id="retire-v">67</span> J.</div>
           </div>
         </div>
 
         <div class="form-row">
-          <label>Kinder mit Kindergeld-Anspruch
+          <label class="field-label" for="kids">Kinder mit Kindergeld-Anspruch
             <span class="hint">(für Kinderzulage)</span>
           </label>
           <div class="slider-row">
-            <input type="range" id="kids" value="1" min="0" max="5" step="1">
+            <input type="range" id="kids" value="1" min="0" max="5" step="1" aria-describedby="kids-v">
             <div class="slider-value"><span id="kids-v">1</span></div>
           </div>
         </div>
 
         <div class="form-row">
-          <label>Berufseinsteiger-Bonus
-            <span class="hint">(unter 25 J.)</span>
+          <label class="field-label">Berufseinsteiger-Bonus
+            <span class="hint">(unter 25 Jahre)</span>
           </label>
           <div class="checkbox-row">
             <input type="checkbox" id="newbie">
@@ -518,54 +590,43 @@
         </div>
 
         <div class="form-row">
-          <label>Grenzsteuersatz
-            <span class="hint">(persönlicher Steuersatz)</span>
-          </label>
+          <label class="field-label" for="tax">Persönlicher Grenzsteuersatz</label>
           <div class="slider-row">
-            <input type="range" id="tax" value="30" min="14" max="45" step="1">
+            <input type="range" id="tax" value="30" min="14" max="45" step="1" aria-describedby="tax-v">
             <div class="slider-value"><span id="tax-v">30</span> %</div>
           </div>
         </div>
       </div>
 
       <div class="card">
-        <h3><span class="icon">2</span> Produkt & Beitrag</h3>
+        <h3><span class="icon">3</span> Beitrag &amp; Rendite</h3>
 
         <div class="form-row">
-          <label>Produktvariante</label>
-          <div class="toggle-group" id="product-toggle">
-            <button type="button" data-product="basis" class="active">AVD Basis</button>
-            <button type="button" data-product="kombi">Basis + Premium</button>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <label>Monatlicher Eigenbeitrag
+          <label class="field-label" for="contribution">Monatlicher Eigenbeitrag
             <span class="hint">(Kundenleistung; Zulagen kommen oben drauf)</span>
           </label>
           <div class="input-group">
-            <input type="number" id="contribution" value="200" min="0" step="10">
+            <input type="number" id="contribution" value="150" min="0" max="570" step="10">
             <div class="suffix">€ / Monat</div>
           </div>
-          <div id="min-hint" class="sales-hint" style="display:none;">
-            <div class="hint-title">Hinweis zur Mindesteigenleistung</div>
-            <span id="min-hint-text"></span>
-          </div>
+          <div id="min-hint" class="info-hint" style="display:none;"></div>
         </div>
 
         <div class="form-row">
-          <label>Renditeerwartung p.a. (netto)
+          <label class="field-label">Renditeerwartung p.a. (netto)
             <span class="hint">(nach Produktkosten)</span>
           </label>
-          <div class="toggle-group" id="return-toggle">
-            <button type="button" data-return="3" >Konservativ · 3 %</button>
-            <button type="button" data-return="5" class="active">Ausgewogen · 5 %</button>
-            <button type="button" data-return="7" >Chance · 7 %</button>
+          <div class="segment" id="return-toggle" role="group" aria-label="Renditeerwartung">
+            <button type="button" data-return="3" aria-pressed="false">Konservativ · 3 %</button>
+            <button type="button" data-return="5" class="active" aria-pressed="true">Ausgewogen · 5 %</button>
+            <button type="button" data-return="7" aria-pressed="false">Chance · 7 %</button>
           </div>
         </div>
 
         <div class="form-row">
-          <label>Migrationsbonus (Riester → AVD)</label>
+          <label class="field-label">Migrationsbonus
+            <span class="hint">(Übertritt von Riester)</span>
+          </label>
           <div class="checkbox-row">
             <input type="checkbox" id="migration" checked>
             <label for="migration">Einmaliger Bonus 250 € bei Umstieg bis 31.12.2028</label>
@@ -573,37 +634,9 @@
         </div>
       </div>
 
-      <div class="card">
-        <h3><span class="icon">3</span> Premium-Bausteine</h3>
-        <div style="font-size:12px; color:var(--ergo-grey); margin-bottom:10px;">
-          Aktiv bei Kombi „Basis + Premium". Mehrwert wirkt auf Rendite & Service.
-        </div>
-        <div style="display:flex; flex-direction:column; gap:8px;">
-          <div class="checkbox-row">
-            <input type="checkbox" id="premium-rebal" checked disabled>
-            <label>Aktives Rebalancing (quartalsweise)</label>
-          </div>
-          <div class="checkbox-row">
-            <input type="checkbox" id="premium-advice" checked disabled>
-            <label>Persönlicher Berater & jährliches Review</label>
-          </div>
-          <div class="checkbox-row">
-            <input type="checkbox" id="premium-risk" checked disabled>
-            <label>Ablauf-Management (Risiko-Reduktion ab -10 J. vor Renteneintritt)</label>
-          </div>
-          <div class="checkbox-row">
-            <input type="checkbox" id="premium-dyn" checked disabled>
-            <label>Dynamischer Beitrag (automatische Anpassung an Einkommen)</label>
-          </div>
-        </div>
-        <div style="font-size:12px; color:var(--ergo-grey); margin-top:10px; font-style:italic;">
-          Rechnerisch in Premium-Rendite eingepreist: +0,4 %-Pkt. Netto-Rendite ggü. Basis.
-        </div>
-      </div>
-
     </div>
 
-    <!-- ============ RIGHT: RESULTS ============ -->
+    <!-- =================== RIGHT: RESULTS =================== -->
     <div class="col-right">
 
       <div class="card">
@@ -618,7 +651,7 @@
           <div class="kpi">
             <div class="kpi-label">Steuervorteil</div>
             <div class="kpi-value" id="kpi-tax">—</div>
-            <div class="kpi-sub">pro Jahr</div>
+            <div class="kpi-sub" id="kpi-tax-sub">Günstigerprüfung</div>
           </div>
           <div class="kpi">
             <div class="kpi-label">Förderquote</div>
@@ -626,42 +659,42 @@
             <div class="kpi-sub">vom Gesamtbeitrag</div>
           </div>
           <div class="kpi">
-            <div class="kpi-label">Eigene Leistung</div>
+            <div class="kpi-label">Netto-Aufwand</div>
             <div class="kpi-value" id="kpi-own">—</div>
-            <div class="kpi-sub">netto p.a.</div>
+            <div class="kpi-sub">eigene Leistung p.a.</div>
           </div>
         </div>
 
-        <table class="breakdown">
+        <table class="breakdown" aria-label="Förder-Zusammensetzung">
           <thead>
             <tr>
               <th>Förderbaustein</th>
               <th class="num">Betrag p.a.</th>
             </tr>
           </thead>
-          <tbody id="tbl-breakdown">
-            <!-- JS befüllt -->
-          </tbody>
+          <tbody id="tbl-breakdown"></tbody>
         </table>
-        <div id="migration-notice" class="warning-hint" style="display:none;">
-          Migrationsbonus: <strong id="mig-amount">250 €</strong> einmalig im 1. Vertragsjahr zusätzlich.
+
+        <div id="migration-notice" class="info-hint" style="display:none;">
+          <strong>Migrationsbonus:</strong> 250 € einmalig im 1. Vertragsjahr zusätzlich.
+        </div>
+
+        <div class="notice" style="margin-top: 14px;">
+          <strong>Rechtliche Grundlage:</strong> Altersvorsorgereformgesetz vom 27.03.2026. Grundzulage progressiv: 50 % auf die ersten 360 € Eigenbeitrag, weitere 25 % auf 1 440 € — maximal 540 € bei 1 800 € Eigenbeitrag/Jahr. Kinderzulage 300 €/Kind (kindergeldberechtigt). Sonderausgabenabzug bis 3 000 € p.a. Mindesteigenbeitrag 120 €/Jahr für Zulagenanspruch. Förderfreie Einzahlung bis 6 840 €/Jahr möglich.
         </div>
       </div>
 
       <div class="card">
         <h3><span class="icon">∑</span> Prognostizierte Ablaufleistung</h3>
-        <div style="font-size:13px; color:var(--ergo-grey); margin-bottom:14px;">
-          Kapital zum Rentenbeginn — kumulierte Beiträge + Zulagen × Rendite über <strong id="years-label">32</strong> Jahre Laufzeit.
-          Alle Angaben netto nach Produktkosten.
+        <div style="font-size: 12.5px; color: var(--ergo-grey-700); margin-bottom: 14px;">
+          Kapital zum Rentenbeginn — kumulierte Beiträge + Zulagen mit Zinseszinseffekt über <strong><span id="years-label">32</span></strong> Jahre Laufzeit.
         </div>
 
-        <div class="scenario-bars" id="scenario-bars">
-          <!-- JS befüllt -->
-        </div>
+        <div class="scenario-bars" id="scenario-bars"></div>
 
-        <div class="kpi-row" style="margin-top: 20px;">
+        <div class="kpi-row" style="margin-top: 22px;">
           <div class="kpi">
-            <div class="kpi-label">Eingezahlte Eigenbeiträge</div>
+            <div class="kpi-label">Eingezahlt Eigen</div>
             <div class="kpi-value" id="kpi-paid-own">—</div>
           </div>
           <div class="kpi">
@@ -669,26 +702,22 @@
             <div class="kpi-value" id="kpi-paid-zul">—</div>
           </div>
           <div class="kpi">
-            <div class="kpi-label">Kumulierter Steuervorteil</div>
+            <div class="kpi-label">Kumul. Steuervorteil</div>
             <div class="kpi-value" id="kpi-paid-tax">—</div>
           </div>
           <div class="kpi accent">
-            <div class="kpi-label">Gesamtförderung (Lebenszeit)</div>
+            <div class="kpi-label">Gesamt-Förderung</div>
             <div class="kpi-value" id="kpi-paid-total">—</div>
+            <div class="kpi-sub">inkl. Migrationsbonus</div>
           </div>
         </div>
       </div>
 
       <div class="card">
-        <h3><span class="icon">↔</span> Basis vs. Basis + Premium</h3>
-        <div class="compare-grid" id="compare-grid">
-          <!-- JS befüllt -->
-        </div>
-        <div class="sales-hint">
-          <div class="hint-title">Beraterhinweise für das Kundengespräch</div>
-          <ul id="sales-hints">
-            <!-- JS befüllt -->
-          </ul>
+        <h3><span class="icon">i</span> Beraterhinweise</h3>
+        <div class="sales-hint" style="margin-top: 0; border-left-color: var(--ergo-red); background: var(--ergo-red-light);">
+          <div class="hint-title" style="color: var(--ergo-red-dark);">Für das Kundengespräch</div>
+          <ul id="sales-hints"></ul>
         </div>
       </div>
 
@@ -702,28 +731,33 @@
 </main>
 
 <footer class="disclaimer">
-  <strong>Rechtlicher Hinweis / Internes Tool:</strong> Alle Berechnungen sind unverbindliche Prognosen auf Basis der zum 01.01.2027 in Kraft tretenden gesetzlichen Fördersätze (Altersvorsorge-Fördergesetz 2027). Grundzulage 400 € p.a., Kinderzulage 300 € p.a. je Kind, Berufseinsteiger-Bonus 200 € einmalig unter 25, förderfähiger Höchstbeitrag 3.000 € p.a., steuerliche Absetzbarkeit bis 3.500 € p.a. im Rahmen der Sonderausgaben. Die prognostizierte Ablaufleistung basiert auf konstanter Monatssparrate, unterstellter konstanter Netto-Rendite und Zinseszinseffekt. Tatsächliche Kapitalmarktrenditen können abweichen. Kein Angebot im Sinne des WpHG, ersetzt keine individuelle Beratung. Stand: 04/2026.
+  <strong>Rechtlicher Hinweis · Internes Tool.</strong> Alle Berechnungen sind unverbindliche Prognosen auf Basis der zum 01.01.2027 in Kraft tretenden Vorschriften des Altersvorsorgereformgesetzes (Bundestagsbeschluss 27.03.2026; zustimmungsbedürftig Bundesrat). Die prognostizierte Ablaufleistung basiert auf konstanter Monatssparrate, unterstellter konstanter Netto-Rendite und Zinseszinseffekt. Tatsächliche Kapitalmarktrenditen können abweichen. Kein Angebot im Sinne des WpHG, ersetzt keine individuelle Beratung. Stand: 04/2026.
   <br><br>
-  <strong>Nur für interne Verwendung durch ERGO Mitarbeiter & vertraglich gebundene Berater.</strong> Datei enthält keine Kundendaten und speichert keine Eingaben.
+  <strong>Nur für interne Verwendung durch ERGO Mitarbeiter &amp; vertraglich gebundene Berater.</strong> Die Anwendung speichert keine Eingaben und überträgt keine Daten.
 </footer>
 
 <script>
 /* =======================================================================
-   AVD Förder-Rechner · Calculation Engine
+   AVD Förder-Rechner v1.1 · Calculation Engine
+   Grundlage: Altersvorsorgereformgesetz (Bundestagsbeschluss 27.03.2026)
    ====================================================================== */
 
-const PARAMS = {
-  grundzulage: 400,
-  kinderzulage: 300,
-  berufseinsteiger: 200,
-  foerderMax: 3000,           // Max. förderfähiger Jahresbeitrag
-  steuerMax: 3500,            // Max. Sonderausgabenabzug
-  sockelbeitrag: 60,          // Mindestsockel
-  mindesteigenProz: 4,        // 4% v. Bruttoeinkommen (minus Zulagen)
-  migrationsbonus: 250,
-  // Netto-Renditeaufschlag Premium ggü. Basis:
-  premiumReturnBonus: 0.4     // Prozentpunkte
-};
+"use strict";
+
+const PARAMS = Object.freeze({
+  grundStufe1Satz:      0.50,
+  grundStufe1Limit:     360,
+  grundStufe2Satz:      0.25,
+  grundStufe2Limit:     1800,
+  grundZulageMax:       540,
+
+  kinderzulage:         300,
+  berufseinsteigerBonus: 200,
+  mindesteigenbeitrag:  120,
+  sonderausgabenMax:    3000,
+  einzahlungMax:        6840,
+  migrationsbonus:      250
+});
 
 const state = {
   income: 48000,
@@ -732,269 +766,319 @@ const state = {
   kids: 1,
   newbie: false,
   tax: 30,
-  product: "basis",   // "basis" | "kombi"
-  contribution: 200,  // €/Monat
+  product: "basis",
+  contribution: 150,
   returnPct: 5,
   migration: true
 };
 
-/* --- helpers --- */
-const fmt = n => new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 }).format(Math.round(n)) + " €";
-const fmtPct = n => (n).toLocaleString("de-DE", { maximumFractionDigits: 1 }) + " %";
+const fmtEur = n => {
+  if (!Number.isFinite(n)) return "—";
+  return new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 }).format(Math.round(n)) + " €";
+};
+const fmtPct = n => {
+  if (!Number.isFinite(n)) return "—";
+  return n.toLocaleString("de-DE", { maximumFractionDigits: 1 }) + " %";
+};
+const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
 
-/* --- Förderberechnung pro Jahr --- */
+/* Progressive Grundzulage:
+   50 % auf die ersten 360 €, 25 % auf weitere 1 440 € → max. 540 € bei 1 800 € Eigenbeitrag */
+function berechneGrundzulage(eigenbeitragJahr) {
+  const eb = clamp(eigenbeitragJahr, 0, PARAMS.grundStufe2Limit);
+  const stufe1 = Math.min(eb, PARAMS.grundStufe1Limit) * PARAMS.grundStufe1Satz;
+  const stufe2 = Math.max(eb - PARAMS.grundStufe1Limit, 0) * PARAMS.grundStufe2Satz;
+  return Math.min(stufe1 + stufe2, PARAMS.grundZulageMax);
+}
+
 function calcFoerderung(s) {
-  const annualBeitrag = s.contribution * 12;
+  const eigenbeitragJahr = clamp(s.contribution * 12, 0, PARAMS.einzahlungMax);
 
-  // Zulagen (nur wenn Mindesteigenbeitrag erfüllt)
-  const zulagen = {
-    grund: PARAMS.grundzulage,
-    kinder: PARAMS.kinderzulage * s.kids,
-    newbie: s.newbie ? PARAMS.berufseinsteiger : 0
-  };
-  const zulagenSumme = zulagen.grund + zulagen.kinder + zulagen.newbie;
+  const zulageBerechtigt = eigenbeitragJahr >= PARAMS.mindesteigenbeitrag;
 
-  // Mindesteigenbeitrag = 4% vom Brutto, max 3.000 €, mind. Sockelbeitrag 60 €
-  // abzgl. Zulagensumme
-  let soll = Math.min(s.income * PARAMS.mindesteigenProz / 100, PARAMS.foerderMax) - zulagenSumme;
-  soll = Math.max(soll, PARAMS.sockelbeitrag);
-  const mindestEigen = Math.max(0, soll);
+  const grundzulage  = zulageBerechtigt ? berechneGrundzulage(eigenbeitragJahr) : 0;
+  const kinderzulage = zulageBerechtigt ? PARAMS.kinderzulage * s.kids : 0;
+  const newbieBonus  = (zulageBerechtigt && s.newbie) ? PARAMS.berufseinsteigerBonus : 0;
+  const zulagenSumme = grundzulage + kinderzulage + newbieBonus;
 
-  // Zulagenkürzung wenn Eigenbeitrag zu niedrig
-  const zulagenFaktor = mindestEigen > 0 ? Math.min(1, annualBeitrag / mindestEigen) : 1;
-  const zulagenEffektiv = zulagenSumme * zulagenFaktor;
+  // Sonderausgabenabzug: Eigenbeitrag + Zulagen, gedeckelt auf 3 000 €
+  const sonderausgaben = Math.min(eigenbeitragJahr + zulagenSumme, PARAMS.sonderausgabenMax);
+  const steuervorteil  = sonderausgaben * (s.tax / 100);
 
-  // Steuervorteil: Beitrag + Zulagen (bis Höchstgrenze), Vorteil = steuerfähig × Grenzsteuersatz - Zulagen
-  const sonderausgaben = Math.min(annualBeitrag + zulagenEffektiv, PARAMS.steuerMax);
-  const steuerRueckerstattung = Math.max(0, sonderausgaben * s.tax/100 - zulagenEffektiv);
+  // Günstigerprüfung: Finanzamt erstattet nur den über die Zulagen hinausgehenden Betrag
+  const zusaetzlicheSteuer = Math.max(0, steuervorteil - zulagenSumme);
 
-  const gesamtbeitrag = annualBeitrag + zulagenEffektiv;
-  const foerderQuote = gesamtbeitrag > 0 ? ((zulagenEffektiv + steuerRueckerstattung) / gesamtbeitrag) * 100 : 0;
+  const gesamtbeitrag = eigenbeitragJahr + zulagenSumme;
+  const foerderQuote  = gesamtbeitrag > 0
+      ? ((zulagenSumme + zusaetzlicheSteuer) / gesamtbeitrag) * 100
+      : 0;
 
   return {
-    annualBeitrag,
-    zulagen, zulagenEffektiv, zulagenFaktor, mindestEigen,
-    steuerRueckerstattung, foerderQuote,
-    eigeneLeistung: annualBeitrag - steuerRueckerstattung
+    eigenbeitragJahr,
+    zulageBerechtigt,
+    grundzulage, kinderzulage, newbieBonus, zulagenSumme,
+    steuervorteil, zusaetzlicheSteuer, sonderausgaben,
+    gesamtbeitrag, foerderQuote,
+    nettoAufwand: eigenbeitragJahr - zusaetzlicheSteuer
   };
 }
 
-/* --- Ablaufleistung (FV) --- */
-function calcFuturValue(s, f, renditePct) {
-  const jahre = Math.max(0, s.retire - s.age);
-  // Kumulierte Beiträge (eigene) + Zulagen mit Zinseszins
-  // vereinfacht: gleichmäßige monatliche Einzahlung
+function calcFV(s, f, renditePct) {
+  const jahre  = Math.max(0, s.retire - s.age);
   const monate = jahre * 12;
-  const rMonth = renditePct / 100 / 12;
+  const rMonat = renditePct / 100 / 12;
+  const rJahr  = renditePct / 100;
 
-  // FV einer Annuität (monatliche Einzahlung am Monatsende):
-  // eigene Beiträge
-  const fvEigen = rMonth === 0
-    ? s.contribution * monate
-    : s.contribution * ((Math.pow(1 + rMonth, monate) - 1) / rMonth);
+  const fvEigen = rMonat === 0
+      ? s.contribution * monate
+      : s.contribution * ((Math.pow(1 + rMonat, monate) - 1) / rMonat);
 
-  // Zulagen als Jahreszahlung (am Jahresende)
-  const rYear = renditePct / 100;
-  const fvZul = rYear === 0
-    ? f.zulagenEffektiv * jahre
-    : f.zulagenEffektiv * ((Math.pow(1 + rYear, jahre) - 1) / rYear);
+  const fvZul = rJahr === 0
+      ? f.zulagenSumme * jahre
+      : f.zulagenSumme * ((Math.pow(1 + rJahr, jahre) - 1) / rJahr);
 
-  // Migrationsbonus: einmalig 250 € im Jahr 0 → wächst über komplette Laufzeit
-  const migBonus = state.migration ? PARAMS.migrationsbonus * Math.pow(1 + rYear, jahre) : 0;
-
-  const fvGesamt = fvEigen + fvZul + migBonus;
-  const eingezahltEigen = s.contribution * monate;
-  const eingezahltZul = f.zulagenEffektiv * jahre;
-  const kumSteuer = f.steuerRueckerstattung * jahre;
+  const fvMig = s.migration ? PARAMS.migrationsbonus * Math.pow(1 + rJahr, jahre) : 0;
 
   return {
     jahre, monate,
-    fvEigen, fvZul, fvGesamt,
-    eingezahltEigen, eingezahltZul, kumSteuer,
-    gewinn: fvGesamt - eingezahltEigen - eingezahltZul
+    fvEigen, fvZul, fvMig,
+    fvGesamt: fvEigen + fvZul + fvMig,
+    eingezahltEigen: s.contribution * monate,
+    eingezahltZul:   f.zulagenSumme * jahre,
+    kumSteuer:       f.zusaetzlicheSteuer * jahre
   };
 }
 
-/* --- Haupt-Render --- */
 function render() {
-  // Input-Labels aktualisieren
-  document.getElementById("age-v").textContent = state.age;
+  document.getElementById("age-v").textContent    = state.age;
   document.getElementById("retire-v").textContent = state.retire;
-  document.getElementById("kids-v").textContent = state.kids;
-  document.getElementById("tax-v").textContent = state.tax;
+  document.getElementById("kids-v").textContent   = state.kids;
+  document.getElementById("tax-v").textContent    = state.tax;
 
   const f = calcFoerderung(state);
 
-  // --- KPIs Förderung ---
-  document.getElementById("kpi-zulage").textContent = fmt(f.zulagenEffektiv);
-  document.getElementById("kpi-zulage-sub").textContent =
-    (f.zulagenFaktor < 1 ? "gekürzt — Eigenbeitrag zu niedrig" : "voll anrechenbar");
-  document.getElementById("kpi-tax").textContent = fmt(f.steuerRueckerstattung);
+  document.getElementById("kpi-zulage").textContent = fmtEur(f.zulagenSumme);
+  document.getElementById("kpi-zulage-sub").textContent = !f.zulageBerechtigt
+      ? "Eigenbeitrag < 120 €/Jahr — keine Zulage"
+      : (f.eigenbeitragJahr < PARAMS.grundStufe2Limit
+          ? "Grundzulage gestaffelt — noch Luft"
+          : "voll ausgeschöpft");
+
+  document.getElementById("kpi-tax").textContent = fmtEur(f.zusaetzlicheSteuer);
+  document.getElementById("kpi-tax-sub").textContent = f.zusaetzlicheSteuer > 0
+      ? "zusätzlich zu Zulagen"
+      : "Zulagen günstiger";
+
   document.getElementById("kpi-quote").textContent = fmtPct(f.foerderQuote);
-  document.getElementById("kpi-own").textContent = fmt(f.eigeneLeistung);
+  document.getElementById("kpi-own").textContent   = fmtEur(f.nettoAufwand);
 
-  // --- Breakdown Tabelle ---
-  let rows = "";
-  rows += `<tr><td>Eigener Beitrag</td><td class="num">${fmt(f.annualBeitrag)}</td></tr>`;
-  rows += `<tr><td>Grundzulage</td><td class="num">+ ${fmt(f.zulagen.grund * f.zulagenFaktor)}</td></tr>`;
-  if (state.kids > 0) {
-    rows += `<tr><td>Kinderzulage (${state.kids} × 300 €)</td><td class="num">+ ${fmt(f.zulagen.kinder * f.zulagenFaktor)}</td></tr>`;
-  }
-  if (state.newbie) {
-    rows += `<tr><td>Berufseinsteiger-Bonus (einmalig)</td><td class="num">+ ${fmt(f.zulagen.newbie * f.zulagenFaktor)}</td></tr>`;
-  }
-  if (f.zulagenFaktor < 1) {
-    rows += `<tr class="subtle"><td>Zulagenkürzung (Mindesteigen fehlt)</td><td class="num">Faktor ${fmtPct(f.zulagenFaktor * 100)}</td></tr>`;
-  }
-  rows += `<tr><td>Steuererstattung (Grenzsteuersatz ${state.tax} %)</td><td class="num">+ ${fmt(f.steuerRueckerstattung)}</td></tr>`;
-  rows += `<tr class="total"><td>Gesamtbeitrag aufs Depot / Nettoaufwand</td><td class="num">${fmt(f.annualBeitrag + f.zulagenEffektiv)} / ${fmt(f.eigeneLeistung)}</td></tr>`;
-  document.getElementById("tbl-breakdown").innerHTML = rows;
+  // Breakdown
+  const tbody = document.getElementById("tbl-breakdown");
+  tbody.innerHTML = "";
+  const addRow = (label, value, cls) => {
+    const tr = document.createElement("tr");
+    if (cls) tr.className = cls;
+    const td1 = document.createElement("td"); td1.textContent = label;
+    const td2 = document.createElement("td"); td2.className = "num"; td2.textContent = value;
+    tr.append(td1, td2);
+    tbody.appendChild(tr);
+  };
 
-  // --- Min-Hinweis ---
+  addRow("Eigener Beitrag", fmtEur(f.eigenbeitragJahr));
+  if (f.zulageBerechtigt) {
+    addRow("Grundzulage" + (f.grundzulage < PARAMS.grundZulageMax ? " (gestaffelt)" : ""),
+           "+ " + fmtEur(f.grundzulage));
+    if (state.kids > 0) {
+      addRow(`Kinderzulage (${state.kids} × 300 €)`, "+ " + fmtEur(f.kinderzulage));
+    }
+    if (state.newbie) {
+      addRow("Berufseinsteiger-Bonus (einmalig)", "+ " + fmtEur(f.newbieBonus));
+    }
+  } else {
+    addRow("Zulagen", "— (Mindesteigenbeitrag 120 €/Jahr nicht erreicht)", "subtle");
+  }
+  addRow(`Steuervorteil netto (Grenzsteuer ${state.tax} %, Günstigerprüfung)`,
+         "+ " + fmtEur(f.zusaetzlicheSteuer));
+
+  const totalTr = document.createElement("tr"); totalTr.className = "total";
+  const td1 = document.createElement("td"); td1.textContent = "Depot-Zufluss p.a. / Netto-Aufwand";
+  const td2 = document.createElement("td"); td2.className = "num";
+  td2.textContent = fmtEur(f.gesamtbeitrag) + " / " + fmtEur(f.nettoAufwand);
+  totalTr.append(td1, td2);
+  tbody.appendChild(totalTr);
+
+  // Min-Hinweis
   const minHint = document.getElementById("min-hint");
-  const minText = document.getElementById("min-hint-text");
-  if (f.zulagenFaktor < 1) {
+  if (!f.zulageBerechtigt) {
+    minHint.innerHTML = `<strong>Achtung:</strong> Mit ${fmtEur(f.eigenbeitragJahr)}/Jahr Eigenbeitrag wird die Zulage nicht ausgelöst. Mindesteigenbeitrag <strong>120 €/Jahr (10 €/Monat)</strong>.`;
     minHint.style.display = "block";
-    const fehlend = Math.ceil((f.mindestEigen - f.annualBeitrag) / 12);
-    minText.innerHTML = `Für volle Zulagen fehlen <strong>${fehlend} €/Monat</strong> Eigenbeitrag (Mindesteigen ${fmt(f.mindestEigen)} p.a.).`;
+  } else if (f.eigenbeitragJahr < PARAMS.grundStufe2Limit) {
+    const fehlendJahr = PARAMS.grundStufe2Limit - f.eigenbeitragJahr;
+    minHint.innerHTML = `<strong>Hinweis:</strong> Volle Grundzulage (540 €) greift ab <strong>1 800 €/Jahr (150 €/Mo)</strong> Eigenbeitrag. Es fehlen derzeit <strong>${fmtEur(fehlendJahr)}/Jahr</strong>.`;
+    minHint.style.display = "block";
   } else {
     minHint.style.display = "none";
   }
 
-  // --- Migration Hinweis ---
   document.getElementById("migration-notice").style.display = state.migration ? "block" : "none";
-
-  // --- Laufzeit-Label ---
   document.getElementById("years-label").textContent = state.retire - state.age;
 
-  // --- Szenarien-Balken ---
+  // Szenarien
   const scenarios = [
-    { key: "konservativ", label: "Konservativ · 3 %", ret: 3 },
-    { key: "ausgewogen",  label: "Ausgewogen · 5 %", ret: 5 },
-    { key: "chance",      label: "Chance · 7 %", ret: 7 }
+    { label: "Konservativ · 3 %", ret: 3 },
+    { label: "Ausgewogen · 5 %", ret: 5 },
+    { label: "Chance · 7 %",     ret: 7 }
   ];
-  const effReturn = r => state.product === "kombi" ? r + PARAMS.premiumReturnBonus : r;
-  const fvs = scenarios.map(s => calcFuturValue(state, f, effReturn(s.ret)));
-  const maxFV = Math.max(...fvs.map(v => v.fvGesamt));
-  document.getElementById("scenario-bars").innerHTML = scenarios.map((s, i) => {
+  const fvs = scenarios.map(sc => calcFV(state, f, sc.ret));
+  const maxFV = Math.max(...fvs.map(v => v.fvGesamt), 1);
+
+  const bars = document.getElementById("scenario-bars");
+  bars.innerHTML = "";
+  scenarios.forEach((sc, i) => {
     const v = fvs[i];
-    const pct = maxFV > 0 ? (v.fvGesamt / maxFV) * 100 : 0;
-    return `
-      <div class="scenario-bar">
-        <div class="s-label">${s.label}${state.product === "kombi" ? ` <span style="color:var(--ergo-red)">+${PARAMS.premiumReturnBonus}%</span>` : ""}</div>
-        <div class="s-track"><div class="s-fill" style="width:${pct}%"></div></div>
-        <div class="s-value">${fmt(v.fvGesamt)}</div>
-      </div>
-    `;
-  }).join("");
+    const pct = (v.fvGesamt / maxFV) * 100;
+    const isActive = sc.ret === state.returnPct;
 
-  // --- Kumulierte KPIs (Lebenszeit) ---
-  const mainFV = fvs[1]; // Ausgewogen als Referenz
-  document.getElementById("kpi-paid-own").textContent = fmt(mainFV.eingezahltEigen);
-  document.getElementById("kpi-paid-zul").textContent = fmt(mainFV.eingezahltZul);
-  document.getElementById("kpi-paid-tax").textContent = fmt(mainFV.kumSteuer);
-  document.getElementById("kpi-paid-total").textContent = fmt(mainFV.eingezahltZul + mainFV.kumSteuer + (state.migration ? PARAMS.migrationsbonus : 0));
+    const row = document.createElement("div");
+    row.className = "scenario-bar";
 
-  // --- Basis vs. Kombi Vergleich ---
-  const tmpState = { ...state };
-  tmpState.product = "basis";
-  const fvBasis = calcFuturValue(tmpState, f, 5);
-  tmpState.product = "kombi";
-  const fvKombi = calcFuturValue(tmpState, f, 5 + PARAMS.premiumReturnBonus);
+    const sLabel = document.createElement("div"); sLabel.className = "s-label";
+    sLabel.textContent = sc.label + (isActive ? "  (aktiv)" : "");
 
-  const compareRows = [
-    { label: "Netto-Rendite p.a.", basis: "5,0 %", kombi: "5,4 %", delta: "+0,4 %-Pkt." },
-    { label: "Ablaufleistung (Ausgewogen)", basis: fmt(fvBasis.fvGesamt), kombi: fmt(fvKombi.fvGesamt), delta: `+ ${fmt(fvKombi.fvGesamt - fvBasis.fvGesamt)}` },
-    { label: "Rebalancing", basis: "—", kombi: "✓ quartalsweise", delta: "" },
-    { label: "Persönlicher Berater", basis: "Online", kombi: "✓ inkl. Jahresreview", delta: "" },
-    { label: "Ablauf-Management", basis: "—", kombi: "✓ ab -10 J.", delta: "" },
-    { label: "Dynamischer Beitrag", basis: "—", kombi: "✓", delta: "" }
-  ];
+    const track = document.createElement("div"); track.className = "s-track";
+    const fill  = document.createElement("div"); fill.className = "s-fill";
+    fill.style.width = pct.toFixed(1) + "%";
+    fill.style.background = isActive ? "var(--ergo-red)" : "var(--ergo-grey-500)";
+    track.appendChild(fill);
 
-  let cmpHtml = `
-    <div class="compare-cell header">Merkmal</div>
-    <div class="compare-cell header" style="background: var(--ergo-grey);">AVD Basis</div>
-    <div class="compare-cell header premium">AVD Basis + Premium</div>
-  `;
-  compareRows.forEach(r => {
-    cmpHtml += `<div class="compare-cell label">${r.label}</div>`;
-    cmpHtml += `<div class="compare-cell num">${r.basis}</div>`;
-    cmpHtml += `<div class="compare-cell num" style="background:var(--ergo-red-light); font-weight:700;">${r.kombi}</div>`;
+    const sVal = document.createElement("div"); sVal.className = "s-value";
+    sVal.textContent = fmtEur(v.fvGesamt);
+    sVal.style.color = isActive ? "var(--ergo-red)" : "var(--ergo-grey-900)";
+
+    row.append(sLabel, track, sVal);
+    bars.appendChild(row);
   });
 
-  // Letzte Zeile: Vorteil
-  cmpHtml += `<div class="compare-cell total">Premium-Vorteil über Laufzeit</div>`;
-  cmpHtml += `<div class="compare-cell total" style="background:var(--ergo-grey); text-align:right;">—</div>`;
-  cmpHtml += `<div class="compare-cell total" style="text-align:right;">+ ${fmt(fvKombi.fvGesamt - fvBasis.fvGesamt)}</div>`;
+  // Kumulierte KPIs
+  const activeIdx = scenarios.findIndex(s => s.ret === state.returnPct);
+  const main = fvs[activeIdx >= 0 ? activeIdx : 1];
+  document.getElementById("kpi-paid-own").textContent = fmtEur(main.eingezahltEigen);
+  document.getElementById("kpi-paid-zul").textContent = fmtEur(main.eingezahltZul);
+  document.getElementById("kpi-paid-tax").textContent = fmtEur(main.kumSteuer);
+  document.getElementById("kpi-paid-total").textContent = fmtEur(
+      main.eingezahltZul + main.kumSteuer + (state.migration ? PARAMS.migrationsbonus : 0)
+  );
 
-  document.getElementById("compare-grid").innerHTML = cmpHtml;
-
-  // --- Sales-Hinweise ---
+  // Beraterhinweise
   const hints = [];
-  if (f.zulagenFaktor < 1) {
-    hints.push(`Eigenbeitrag reicht nicht für volle Zulagen — zeige dem Kunden, wie <strong>${Math.ceil((f.mindestEigen - f.annualBeitrag) / 12)} €/Monat mehr</strong> seine Förderung um <strong>${fmt((1 - f.zulagenFaktor) * (f.zulagen.grund + f.zulagen.kinder + f.zulagen.newbie))}</strong> p.a. erhöht.`);
-  }
-  if (state.kids >= 1) {
-    hints.push(`Kinderzulage-Argument: <strong>${fmt(PARAMS.kinderzulage * state.kids)} p.a.</strong> nur durch Kindergeld-Bezug — keine andere Anlageform bietet diesen Bonus.`);
-  }
-  if (state.age <= 30 && !state.newbie && state.age < 25) {
-    hints.push(`Kunde ist unter 25 → <strong>Berufseinsteiger-Bonus 200 €</strong> aktivieren.`);
-  }
-  if (state.tax >= 35) {
-    hints.push(`Hoher Grenzsteuersatz (${state.tax} %) → <strong>Steuervorteil ist der Haupt-Hebel</strong>. In Beratung besonders betonen.`);
-  }
-  if (state.product === "basis" && (fvKombi.fvGesamt - fvBasis.fvGesamt) > 10000) {
-    hints.push(`<strong>Kombi-Upsell-Chance:</strong> Premium bringt über Laufzeit ca. <strong>${fmt(fvKombi.fvGesamt - fvBasis.fvGesamt)}</strong> mehr — bei nur 0,4 %-Pkt. Rendite-Aufschlag.`);
-  }
-  if (state.product === "kombi") {
-    hints.push(`Premium aktiv → fokussiere im Gespräch den <strong>Service-Mehrwert</strong> (persönlicher Berater, Jahresreview) statt reine Kostendiskussion.`);
-  }
-  if (state.migration) {
-    hints.push(`Migrationsbonus 250 € — gilt nur <strong>bis 31.12.2028</strong>. Verknappungs-Argument nutzen.`);
-  }
-  if (state.age >= 50) {
-    hints.push(`Ab Alter 50 → <strong>Ablauf-Management (Premium)</strong> besonders wertvoll. Risiko-Reduktion vor Renteneintritt als Sicherheits-Argument.`);
-  }
-  if (state.contribution < 100) {
-    hints.push(`Beitrag unter 100 €/Monat → prüfe Dynamik-Option, damit Kunde mit Einkommen wächst.`);
+
+  if (!f.zulageBerechtigt) {
+    hints.push(`Beitrag liegt unter der Mindesteigenleistung (120 €/Jahr). <strong>Sofortige Chance:</strong> schon 10 €/Monat lösen die volle Grundzulage-Berechtigung aus.`);
+  } else if (f.eigenbeitragJahr < PARAMS.grundStufe2Limit) {
+    const fehlend = PARAMS.grundStufe2Limit - f.eigenbeitragJahr;
+    hints.push(`Grundzulage noch nicht voll — <strong>+${fmtEur(fehlend)}/Jahr</strong> (ca. ${Math.ceil(fehlend/12)} €/Mo) bringen die volle Zulage von 540 €.`);
   }
 
-  document.getElementById("sales-hints").innerHTML = hints.length
-    ? hints.map(h => `<li>${h}</li>`).join("")
-    : "<li>Alle Parameter in optimalem Bereich — starke Förderquote, klare Empfehlung zum Abschluss.</li>";
+  if (state.kids >= 1) {
+    hints.push(`<strong>${fmtEur(PARAMS.kinderzulage * state.kids)}</strong> Kinderzulage p.a. — kein anderes Anlage-Produkt bietet das. Stark bei Familien-Beratung.`);
+  }
+
+  if (state.age < 25 && !state.newbie) {
+    hints.push(`Kunde ist unter 25 Jahre → <strong>Berufseinsteiger-Bonus 200 €</strong> nicht vergessen.`);
+  }
+
+  if (state.tax >= 35) {
+    hints.push(`Hoher Grenzsteuersatz (${state.tax} %) → <strong>Steuervorteil</strong> ist der Haupt-Hebel. Die Günstigerprüfung sorgt automatisch für den besten Netto-Vorteil.`);
+  }
+
+  if (state.age <= 30 && (state.retire - state.age) >= 35) {
+    hints.push(`Lange Laufzeit (${state.retire - state.age} Jahre) → <strong>Zinseszins dominiert</strong>. Früh starten ist wichtiger als hoch sparen.`);
+  }
+
+  if (state.migration) {
+    hints.push(`Migrationsbonus 250 € gilt nur <strong>bis 31.12.2028</strong> — Verknappungs-Argument im Riester-Übertritts-Gespräch.`);
+  }
+
+  if (f.eigenbeitragJahr > PARAMS.sonderausgabenMax) {
+    hints.push(`Beitrag übersteigt Steuer-Höchstbetrag (3 000 €). Die zusätzliche Einzahlung ist förderfrei, aber <strong>im Depot trotzdem sinnvoll</strong> — steuerfreie Vermögensansammlung bis 6 840 €/Jahr.`);
+  }
+
+  if (f.foerderQuote >= 40) {
+    hints.push(`<strong>Förderquote ${fmtPct(f.foerderQuote)}</strong> — sehr starkes Abschluss-Argument. Bei der Vorstellung der Zahl zuerst den prozentualen Hebel zeigen.`);
+  }
+
+  const sh = document.getElementById("sales-hints");
+  sh.innerHTML = "";
+  if (hints.length === 0) {
+    const li = document.createElement("li");
+    li.textContent = "Alle Parameter in optimalem Bereich — klare Empfehlung zum Abschluss.";
+    sh.appendChild(li);
+  } else {
+    hints.forEach(h => {
+      const li = document.createElement("li");
+      li.innerHTML = h;
+      sh.appendChild(li);
+    });
+  }
 }
 
-/* --- Event-Handler --- */
 function bindInputs() {
-  document.getElementById("income").addEventListener("input", e => { state.income = +e.target.value || 0; render(); });
-  document.getElementById("age").addEventListener("input", e => {
+  const byId = id => document.getElementById(id);
+
+  byId("income").addEventListener("input", e => {
+    state.income = clamp(+e.target.value || 0, 0, 500000);
+    render();
+  });
+
+  byId("age").addEventListener("input", e => {
     state.age = +e.target.value;
-    if (state.age >= state.retire) state.retire = Math.min(70, state.age + 1);
+    if (state.age >= state.retire) {
+      state.retire = Math.min(70, state.age + 1);
+      byId("retire").value = state.retire;
+    }
     render();
   });
-  document.getElementById("retire").addEventListener("input", e => {
+
+  byId("retire").addEventListener("input", e => {
     state.retire = +e.target.value;
-    if (state.retire <= state.age) state.retire = state.age + 1;
+    if (state.retire <= state.age) {
+      state.retire = Math.min(70, state.age + 1);
+      e.target.value = state.retire;
+    }
     render();
   });
-  document.getElementById("kids").addEventListener("input", e => { state.kids = +e.target.value; render(); });
-  document.getElementById("newbie").addEventListener("change", e => { state.newbie = e.target.checked; render(); });
-  document.getElementById("tax").addEventListener("input", e => { state.tax = +e.target.value; render(); });
-  document.getElementById("contribution").addEventListener("input", e => { state.contribution = +e.target.value || 0; render(); });
-  document.getElementById("migration").addEventListener("change", e => { state.migration = e.target.checked; render(); });
+
+  byId("kids").addEventListener("input", e => { state.kids = +e.target.value; render(); });
+  byId("newbie").addEventListener("change", e => { state.newbie = e.target.checked; render(); });
+  byId("tax").addEventListener("input", e => { state.tax = +e.target.value; render(); });
+  byId("contribution").addEventListener("input", e => {
+    state.contribution = clamp(+e.target.value || 0, 0, Math.floor(PARAMS.einzahlungMax / 12));
+    render();
+  });
+  byId("migration").addEventListener("change", e => { state.migration = e.target.checked; render(); });
 
   document.querySelectorAll("#product-toggle button").forEach(btn => {
     btn.addEventListener("click", () => {
-      document.querySelectorAll("#product-toggle button").forEach(b => b.classList.remove("active"));
+      if (btn.disabled) return;
+      document.querySelectorAll("#product-toggle button").forEach(b => {
+        b.classList.remove("active");
+        b.setAttribute("aria-pressed", "false");
+      });
       btn.classList.add("active");
+      btn.setAttribute("aria-pressed", "true");
       state.product = btn.dataset.product;
       render();
     });
   });
+
   document.querySelectorAll("#return-toggle button").forEach(btn => {
     btn.addEventListener("click", () => {
-      document.querySelectorAll("#return-toggle button").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll("#return-toggle button").forEach(b => {
+        b.classList.remove("active");
+        b.setAttribute("aria-pressed", "false");
+      });
       btn.classList.add("active");
+      btn.setAttribute("aria-pressed", "true");
       state.returnPct = +btn.dataset.return;
       render();
     });
@@ -1004,19 +1088,25 @@ function bindInputs() {
 function resetForm() {
   state.income = 48000; state.age = 35; state.retire = 67; state.kids = 1;
   state.newbie = false; state.tax = 30; state.product = "basis";
-  state.contribution = 200; state.returnPct = 5; state.migration = true;
+  state.contribution = 150; state.returnPct = 5; state.migration = true;
 
-  document.getElementById("income").value = 48000;
-  document.getElementById("age").value = 35;
-  document.getElementById("retire").value = 67;
-  document.getElementById("kids").value = 1;
+  const set = (id, val) => { document.getElementById(id).value = val; };
+  set("income", 48000); set("age", 35); set("retire", 67); set("kids", 1);
+  set("tax", 30); set("contribution", 150);
   document.getElementById("newbie").checked = false;
-  document.getElementById("tax").value = 30;
-  document.getElementById("contribution").value = 200;
   document.getElementById("migration").checked = true;
 
-  document.querySelectorAll("#product-toggle button").forEach(b => b.classList.toggle("active", b.dataset.product === "basis"));
-  document.querySelectorAll("#return-toggle button").forEach(b => b.classList.toggle("active", +b.dataset.return === 5));
+  document.querySelectorAll("#product-toggle button").forEach(b => {
+    const isActive = b.dataset.product === "basis";
+    b.classList.toggle("active", isActive);
+    b.setAttribute("aria-pressed", isActive ? "true" : "false");
+  });
+  document.querySelectorAll("#return-toggle button").forEach(b => {
+    const isActive = +b.dataset.return === 5;
+    b.classList.toggle("active", isActive);
+    b.setAttribute("aria-pressed", isActive ? "true" : "false");
+  });
+
   render();
 }
 
