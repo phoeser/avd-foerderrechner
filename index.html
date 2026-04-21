@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AVD Förder-Rechner — ERGO Berater-Tool</title>
+<title>Altersvorsorgedepot Förder-Rechner — ERGO Berater-Tool</title>
 <style>
   /* =====================================================================
      ERGO Corporate Design — AVD Förder-Rechner v1.1 (Basis)
@@ -53,17 +53,14 @@
     position: sticky; top: 0; z-index: 20;
     box-shadow: 0 1px 3px rgba(0,0,0,0.04);
   }
-  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand { display: flex; align-items: center; gap: 16px; }
   .brand-logo {
-    width: 50px; height: 32px;
-    background: var(--ergo-red);
-    color: var(--ergo-white);
-    font-weight: 900;
-    font-size: 15px;
-    display: flex; align-items: center; justify-content: center;
-    letter-spacing: 1px;
-    border-radius: var(--radius-sm);
+    width: 72px; height: 54px;
+    display: block;
+    flex-shrink: 0;
+    filter: drop-shadow(0 1px 2px rgba(226,0,26,0.18));
   }
+  .brand-logo svg { width: 100%; height: 100%; display: block; }
   .brand-text h1 {
     font-size: 17px; font-weight: 700; color: var(--ergo-black);
     line-height: 1.2;
@@ -264,6 +261,21 @@
     text-transform: uppercase;
     color: var(--ergo-amber);
     margin-top: 2px;
+  }
+  .segment button .product-kicker {
+    display: block;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 1.1px;
+    text-transform: uppercase;
+    opacity: 0.72;
+    margin-bottom: 2px;
+  }
+  .segment button .product-variant {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
   }
 
   .checkbox-row {
@@ -508,7 +520,42 @@
 
 <header class="topbar">
   <div class="brand">
-    <div class="brand-logo">ERGO</div>
+    <div class="brand-logo" role="img" aria-label="ERGO Altersvorsorgedepot">
+      <svg viewBox="0 0 72 54" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="lg-red" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#E2001A"/>
+            <stop offset="100%" stop-color="#B40014"/>
+          </linearGradient>
+        </defs>
+        <!-- Rotes Badge -->
+        <rect x="0" y="0" width="72" height="54" rx="4" fill="url(#lg-red)"/>
+        <!-- ERGO oben -->
+        <text x="36" y="19" text-anchor="middle"
+              font-family="'Segoe UI',Arial,sans-serif" font-weight="900"
+              font-size="14" fill="#FFFFFF" letter-spacing="2.4">ERGO</text>
+        <!-- Trennlinie -->
+        <line x1="10" y1="25" x2="62" y2="25" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="0.8"/>
+        <!-- AVD links unten -->
+        <text x="17" y="43" text-anchor="middle"
+              font-family="'Segoe UI',Arial,sans-serif" font-weight="800"
+              font-size="11" fill="#FFFFFF" letter-spacing="1.4">AVD</text>
+        <!-- Geldschein-Icon rechts unten -->
+        <g transform="translate(32,30)">
+          <!-- hinterer Schein (leicht versetzt) -->
+          <rect x="2.5" y="2.5" width="28" height="16" rx="1.8" fill="#FFFFFF" fill-opacity="0.42"/>
+          <!-- vorderer Schein -->
+          <rect x="0" y="0" width="28" height="16" rx="1.8" fill="#FFFFFF"/>
+          <!-- Innen-Rahmen -->
+          <rect x="1.5" y="1.5" width="25" height="13" rx="1" fill="none" stroke="#E2001A" stroke-width="0.5" stroke-opacity="0.45"/>
+          <!-- Euro-Münze -->
+          <circle cx="14" cy="8" r="4" fill="#E2001A"/>
+          <text x="14" y="10.6" text-anchor="middle"
+                font-family="'Segoe UI',Arial,sans-serif" font-weight="900"
+                font-size="6.5" fill="#FFFFFF">€</text>
+        </g>
+      </svg>
+    </div>
     <div class="brand-text">
       <h1>Altersvorsorgedepot — Förder-Rechner</h1>
       <div class="sub">Berater-Tool · Version 1.1 · Stand 04/2026</div>
@@ -536,16 +583,20 @@
 
         <div class="form-row">
           <div class="segment" id="product-toggle" role="group" aria-label="Produktvariante">
-            <button type="button" data-product="basis" class="active" aria-pressed="true">AVD Basis</button>
+            <button type="button" data-product="basis" class="active" aria-pressed="true">
+              <span class="product-kicker">Altersvorsorgedepot</span>
+              <span class="product-variant">Basis</span>
+            </button>
             <button type="button" data-product="premium" disabled aria-disabled="true" title="Premium-Variante folgt im Q2 2027">
-              AVD Premium
+              <span class="product-kicker">Altersvorsorgedepot</span>
+              <span class="product-variant">Premium</span>
               <span class="coming-soon">ab Q2 2027</span>
             </button>
           </div>
         </div>
 
         <div class="notice">
-          <strong>Hinweis:</strong> Der Rechner bildet aktuell nur das <strong>AVD Basis-Depot</strong> (ETF/Fonds-Sparplan mit gesetzlicher Förderung) ab. Die ERGO Premium-Variante mit persönlichem Berater, Rebalancing und Ablauf-Management folgt separat.
+          <strong>Hinweis:</strong> Der Rechner bildet aktuell nur das <strong>Altersvorsorgedepot Basis</strong> (ETF/Fonds-Sparplan mit gesetzlicher Förderung) ab. Die ERGO Premium-Variante mit persönlichem Berater, Rebalancing und Ablauf-Management folgt separat.
         </div>
       </div>
 
@@ -1064,73 +1115,4 @@ function bindInputs() {
     state.contribution = clamp(+e.target.value || 0, 0, Math.floor(PARAMS.einzahlungMax / 12));
     render();
   });
-  byId("migration").addEventListener("change", e => { state.migration = e.target.checked; render(); });
-
-  document.querySelectorAll("#product-toggle button").forEach(btn => {
-    btn.addEventListener("click", () => {
-      if (btn.disabled) return;
-      document.querySelectorAll("#product-toggle button").forEach(b => {
-        b.classList.remove("active");
-        b.setAttribute("aria-pressed", "false");
-      });
-      btn.classList.add("active");
-      btn.setAttribute("aria-pressed", "true");
-      state.product = btn.dataset.product;
-      render();
-    });
-  });
-
-  document.querySelectorAll("#return-toggle button").forEach(btn => {
-    btn.addEventListener("click", () => {
-      document.querySelectorAll("#return-toggle button").forEach(b => {
-        b.classList.remove("active");
-        b.setAttribute("aria-pressed", "false");
-      });
-      btn.classList.add("active");
-      btn.setAttribute("aria-pressed", "true");
-      state.returnPct = +btn.dataset.return;
-      render();
-    });
-  });
-}
-
-function resetForm() {
-  state.income = 48000; state.age = 35; state.retire = 67; state.kids = 1;
-  state.newbie = false; state.tax = 30; state.product = "basis";
-  state.contribution = 150; state.returnPct = 5; state.migration = true;
-
-  const set = (id, val) => { document.getElementById(id).value = val; };
-  set("income", 48000); set("age", 35); set("retire", 67); set("kids", 1);
-  set("tax", 30); set("contribution", 150);
-  document.getElementById("newbie").checked = false;
-  document.getElementById("migration").checked = true;
-
-  document.querySelectorAll("#product-toggle button").forEach(b => {
-    const isActive = b.dataset.product === "basis";
-    b.classList.toggle("active", isActive);
-    b.setAttribute("aria-pressed", isActive ? "true" : "false");
-  });
-  document.querySelectorAll("#return-toggle button").forEach(b => {
-    const isActive = +b.dataset.return === 5;
-    b.classList.toggle("active", isActive);
-    b.setAttribute("aria-pressed", isActive ? "true" : "false");
-  });
-
-  render();
-}
-
-bindInputs();
-render();
-
-/* ==================== BOTTOM ACTIONS ==================== */
-document.getElementById("btnPrint").addEventListener("click", () => {
-  window.print();
-});
-document.getElementById("btnReset").addEventListener("click", () => {
-  const ok = window.confirm("Alle Eingaben auf Standardwerte zurücksetzen?");
-  if (ok) resetForm();
-});
-</script>
-
-</body>
-</html>
+  byId("migration").addEve
