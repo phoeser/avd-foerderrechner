@@ -448,6 +448,15 @@
     display: flex; gap: 10px; margin-top: 22px;
     flex-wrap: wrap;
   }
+  .actions-bar-bottom {
+    max-width: 1280px;
+    margin: 28px auto 0;
+    padding: 22px 32px;
+    justify-content: center;
+    border-top: 1px solid var(--ergo-grey-300);
+    background: var(--ergo-white);
+  }
+  .actions-bar-bottom .btn { min-width: 220px; }
   .btn {
     padding: 12px 22px;
     font-size: 13px;
@@ -721,12 +730,12 @@
         </div>
       </div>
 
-      <div class="actions-bar">
-        <button class="btn btn-primary" onclick="window.print()">Berechnung drucken / PDF</button>
-        <button class="btn btn-secondary" onclick="resetForm()">Zurücksetzen</button>
-      </div>
-
     </div>
+  </div>
+
+  <div class="actions-bar actions-bar-bottom">
+    <button class="btn btn-primary" id="btnPrint" type="button">Berechnung drucken</button>
+    <button class="btn btn-secondary" id="btnReset" type="button">Neu rechnen</button>
   </div>
 </main>
 
@@ -1112,6 +1121,15 @@ function resetForm() {
 
 bindInputs();
 render();
+
+/* ==================== BOTTOM ACTIONS ==================== */
+document.getElementById("btnPrint").addEventListener("click", () => {
+  window.print();
+});
+document.getElementById("btnReset").addEventListener("click", () => {
+  const ok = window.confirm("Alle Eingaben auf Standardwerte zurücksetzen?");
+  if (ok) resetForm();
+});
 </script>
 
 </body>
