@@ -646,16 +646,6 @@
         </div>
 
         <div class="form-row">
-          <label class="field-label">Berufseinsteiger-Bonus
-            <span class="hint">(unter 25 Jahre)</span>
-          </label>
-          <div class="checkbox-row">
-            <input type="checkbox" id="newbie">
-            <label for="newbie">Einmaliger Bonus 200 € im 1. Beitragsjahr</label>
-          </div>
-        </div>
-
-        <div class="form-row">
           <label class="field-label" for="tax">Persönlicher Grenzsteuersatz</label>
           <div class="slider-row">
             <input type="range" id="tax" value="30" min="14" max="45" step="1" aria-describedby="tax-v">
@@ -695,7 +685,7 @@
           </label>
           <div class="checkbox-row">
             <input type="checkbox" id="migration" checked>
-            <label for="migration">Einmaliger Bonus 250 € bei Umstieg bis 31.12.2028</label>
+            <label for="migration">Einmaliger Bonus 150 € bei Umstieg bis 31.12.2028</label>
           </div>
         </div>
       </div>
@@ -742,7 +732,7 @@
         </table>
 
         <div id="migration-notice" class="info-hint" style="display:none;">
-          <strong>Migrationsbonus:</strong> 250 € einmalig im 1. Vertragsjahr zusätzlich.
+          <strong>Migrationsbonus:</strong> 150 € einmalig im 1. Vertragsjahr zusätzlich.
         </div>
 
         <div class="notice" style="margin-top: 14px;">
@@ -804,8 +794,11 @@
 
 <script>
 /* =======================================================================
-   AVD Förder-Rechner v1.1 · Calculation Engine
+   Altersvorsorgedepot Förder-Rechner v1.4 · Calculation Engine
    Grundlage: Altersvorsorgereformgesetz (Bundestagsbeschluss 27.03.2026)
+   Änderungen v1.4: Migrationsbonus 150 € (vorher 250 €);
+                    Berufseinsteiger-Bonus entfernt;
+                    Script-Ende wiederhergestellt (Bug v1.3).
    ====================================================================== */
 
 "use strict";
@@ -818,11 +811,10 @@ const PARAMS = Object.freeze({
   grundZulageMax:       540,
 
   kinderzulage:         300,
-  berufseinsteigerBonus: 200,
   mindesteigenbeitrag:  120,
   sonderausgabenMax:    3000,
   einzahlungMax:        6840,
-  migrationsbonus:      250
+  migrationsbonus:      150
 });
 
 const state = {
@@ -830,7 +822,6 @@ const state = {
   age: 35,
   retire: 67,
   kids: 1,
-  newbie: false,
   tax: 30,
   product: "basis",
   contribution: 150,
@@ -864,8 +855,7 @@ function calcFoerderung(s) {
 
   const grundzulage  = zulageBerechtigt ? berechneGrundzulage(eigenbeitragJahr) : 0;
   const kinderzulage = zulageBerechtigt ? PARAMS.kinderzulage * s.kids : 0;
-  const newbieBonus  = (zulageBerechtigt && s.newbie) ? PARAMS.berufseinsteigerBonus : 0;
-  const zulagenSumme = grundzulage + kinderzulage + newbieBonus;
+  const zulagenSumme = grundzulage + kinderzulage;
 
   // Sonderausgabenabzug: Eigenbeitrag + Zulagen, gedeckelt auf 3 000 €
   const sonderausgaben = Math.min(eigenbeitragJahr + zulagenSumme, PARAMS.sonderausgabenMax);
@@ -882,7 +872,7 @@ function calcFoerderung(s) {
   return {
     eigenbeitragJahr,
     zulageBerechtigt,
-    grundzulage, kinderzulage, newbieBonus, zulagenSumme,
+    grundzulage, kinderzulage, zulagenSumme,
     steuervorteil, zusaetzlicheSteuer, sonderausgaben,
     gesamtbeitrag, foerderQuote,
     nettoAufwand: eigenbeitragJahr - zusaetzlicheSteuer
@@ -956,9 +946,6 @@ function render() {
            "+ " + fmtEur(f.grundzulage));
     if (state.kids > 0) {
       addRow(`Kinderzulage (${state.kids} × 300 €)`, "+ " + fmtEur(f.kinderzulage));
-    }
-    if (state.newbie) {
-      addRow("Berufseinsteiger-Bonus (einmalig)", "+ " + fmtEur(f.newbieBonus));
     }
   } else {
     addRow("Zulagen", "— (Mindesteigenbeitrag 120 €/Jahr nicht erreicht)", "subtle");
@@ -1049,10 +1036,6 @@ function render() {
     hints.push(`<strong>${fmtEur(PARAMS.kinderzulage * state.kids)}</strong> Kinderzulage p.a. — kein anderes Anlage-Produkt bietet das. Stark bei Familien-Beratung.`);
   }
 
-  if (state.age < 25 && !state.newbie) {
-    hints.push(`Kunde ist unter 25 Jahre → <strong>Berufseinsteiger-Bonus 200 €</strong> nicht vergessen.`);
-  }
-
   if (state.tax >= 35) {
     hints.push(`Hoher Grenzsteuersatz (${state.tax} %) → <strong>Steuervorteil</strong> ist der Haupt-Hebel. Die Günstigerprüfung sorgt automatisch für den besten Netto-Vorteil.`);
   }
@@ -1062,7 +1045,7 @@ function render() {
   }
 
   if (state.migration) {
-    hints.push(`Migrationsbonus 250 € gilt nur <strong>bis 31.12.2028</strong> — Verknappungs-Argument im Riester-Übertritts-Gespräch.`);
+    hints.push(`Migrationsbonus 150 € gilt nur <strong>bis 31.12.2028</strong> — Verknappungs-Argument im Riester-Übertritts-Gespräch.`);
   }
 
   if (f.eigenbeitragJahr > PARAMS.sonderausgabenMax) {
@@ -1115,10 +1098,81 @@ function bindInputs() {
   });
 
   byId("kids").addEventListener("input", e => { state.kids = +e.target.value; render(); });
-  byId("newbie").addEventListener("change", e => { state.newbie = e.target.checked; render(); });
   byId("tax").addEventListener("input", e => { state.tax = +e.target.value; render(); });
   byId("contribution").addEventListener("input", e => {
     state.contribution = clamp(+e.target.value || 0, 0, Math.floor(PARAMS.einzahlungMax / 12));
     render();
   });
-  byId("migration").addEve
+  byId("migration").addEventListener("change", e => { state.migration = e.target.checked; render(); });
+
+  /* Produkt-Segment (Basis aktiv, Premium gesperrt) */
+  document.querySelectorAll("#product-toggle button[data-product]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (btn.disabled) return;
+      document.querySelectorAll("#product-toggle button").forEach(b => {
+        b.classList.remove("active");
+        b.setAttribute("aria-pressed", "false");
+      });
+      btn.classList.add("active");
+      btn.setAttribute("aria-pressed", "true");
+      state.product = btn.dataset.product;
+      render();
+    });
+  });
+
+  /* Renditeerwartung-Segment */
+  document.querySelectorAll("#return-toggle button[data-return]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("#return-toggle button").forEach(b => {
+        b.classList.remove("active");
+        b.setAttribute("aria-pressed", "false");
+      });
+      btn.classList.add("active");
+      btn.setAttribute("aria-pressed", "true");
+      state.returnPct = +btn.dataset.return;
+      render();
+    });
+  });
+
+  /* Action-Buttons: Drucken + Reset */
+  const printBtn = byId("btnPrint");
+  if (printBtn) printBtn.addEventListener("click", () => window.print());
+
+  const resetBtn = byId("btnReset");
+  if (resetBtn) resetBtn.addEventListener("click", () => {
+    Object.assign(state, {
+      income: 48000, age: 35, retire: 67, kids: 1,
+      tax: 30, product: "basis",
+      contribution: 150, returnPct: 5, migration: true
+    });
+    byId("income").value       = state.income;
+    byId("age").value          = state.age;
+    byId("retire").value       = state.retire;
+    byId("kids").value         = state.kids;
+    byId("tax").value          = state.tax;
+    byId("contribution").value = state.contribution;
+    byId("migration").checked  = state.migration;
+
+    document.querySelectorAll("#return-toggle button").forEach(b => {
+      const on = +b.dataset.return === state.returnPct;
+      b.classList.toggle("active", on);
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    document.querySelectorAll("#product-toggle button").forEach(b => {
+      const on = b.dataset.product === state.product && !b.disabled;
+      b.classList.toggle("active", on);
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+
+    render();
+  });
+}
+
+/* Boot */
+document.addEventListener("DOMContentLoaded", () => {
+  bindInputs();
+  render();
+});
+</script>
+</body>
+</html>
