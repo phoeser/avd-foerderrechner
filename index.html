@@ -12,7 +12,7 @@
 <title>Altersvorsorgedepot Förder-Rechner — ERGO Berater-Tool</title>
 <style>
   /* =====================================================================
-     ERGO Corporate Design — AVD Förder-Rechner v1.1 (Basis)
+     ERGO Corporate Design — AVD Förder-Rechner v1.5 (Basis)
      ===================================================================== */
   :root {
     --ergo-red:        #E2001A;
@@ -564,7 +564,7 @@
     </div>
     <div class="brand-text">
       <h1>Altersvorsorgedepot — Förder-Rechner</h1>
-      <div class="sub">Berater-Tool · Version 1.1 · Stand 04/2026</div>
+      <div class="sub">Berater-Tool · Version 1.5 · Stand 06/2026</div>
     </div>
   </div>
   <div class="badge-internal">Internes Tool</div>
@@ -574,7 +574,7 @@
   <div class="hero-inner">
     <div class="eyebrow">Neu ab 01.01.2027 · Nachfolger der Riester-Rente</div>
     <h2>Förderung und Ablaufleistung in 60 Sekunden.</h2>
-    <p>Individuelle Kunden-Szenarien durchrechnen — staatliche Zulagen, Steuervorteil und Ablaufleistung nach dem Altersvorsorgereformgesetz vom 27.03.2026. Inklusive Beraterhinweisen für das Kundengespräch.</p>
+    <p>Individuelle Kunden-Szenarien durchrechnen — staatliche Zulagen, Steuervorteil und Ablaufleistung nach dem Altersvorsorgereformgesetz (Bundestag 27.03.2026, Bundesrat 08.05.2026). Inklusive Beraterhinweisen für das Kundengespräch.</p>
   </div>
 </section>
 
@@ -589,20 +589,15 @@
 
         <div class="form-row">
           <div class="segment" id="product-toggle" role="group" aria-label="Produktvariante">
-            <button type="button" data-product="basis" class="active" aria-pressed="true">
+            <button type="button" data-product="basis" class="active" aria-pressed="true" style="cursor: default;">
               <span class="product-kicker">Altersvorsorgedepot</span>
               <span class="product-variant">Basis</span>
-            </button>
-            <button type="button" data-product="premium" disabled aria-disabled="true" title="Premium-Variante folgt im Q2 2027">
-              <span class="product-kicker">Altersvorsorgedepot</span>
-              <span class="product-variant">Premium</span>
-              <span class="coming-soon">ab Q2 2027</span>
             </button>
           </div>
         </div>
 
         <div class="notice">
-          <strong>Hinweis:</strong> Der Rechner bildet aktuell nur das <strong>Altersvorsorgedepot Basis</strong> (ETF/Fonds-Sparplan mit gesetzlicher Förderung) ab. Die ERGO Premium-Variante mit persönlichem Berater, Rebalancing und Ablauf-Management folgt separat.
+          <strong>Hinweis:</strong> Der Rechner bildet das <strong>Altersvorsorgedepot Basis</strong> (ETF/Fonds-Sparplan mit gesetzlicher Förderung) ab.
         </div>
       </div>
 
@@ -679,15 +674,6 @@
           </div>
         </div>
 
-        <div class="form-row">
-          <label class="field-label">Migrationsbonus
-            <span class="hint">(Übertritt von Riester)</span>
-          </label>
-          <div class="checkbox-row">
-            <input type="checkbox" id="migration" checked>
-            <label for="migration">Einmaliger Bonus 150 € bei Umstieg bis 31.12.2028</label>
-          </div>
-        </div>
       </div>
 
     </div>
@@ -731,12 +717,12 @@
           <tbody id="tbl-breakdown"></tbody>
         </table>
 
-        <div id="migration-notice" class="info-hint" style="display:none;">
-          <strong>Migrationsbonus:</strong> 150 € einmalig im 1. Vertragsjahr zusätzlich.
+        <div id="bonus-notice" class="info-hint" style="display:none;">
+          <strong>Berufseinsteigerbonus:</strong> 200 € einmalig zusätzlich — Vertragsabschluss vor dem 25. Geburtstag.
         </div>
 
         <div class="notice" style="margin-top: 14px;">
-          <strong>Rechtliche Grundlage:</strong> Altersvorsorgereformgesetz vom 27.03.2026. Grundzulage progressiv: 50 % auf die ersten 360 € Eigenbeitrag, weitere 25 % auf 1 440 € — maximal 540 € bei 1 800 € Eigenbeitrag/Jahr. Kinderzulage 300 €/Kind (kindergeldberechtigt). Sonderausgabenabzug bis 3 000 € p.a. Mindesteigenbeitrag 120 €/Jahr für Zulagenanspruch. Förderfreie Einzahlung bis 6 840 €/Jahr möglich.
+          <strong>Rechtliche Grundlage:</strong> Altersvorsorgereformgesetz (Bundestag 27.03.2026, Bundesrat 08.05.2026). Grundzulage progressiv: 50 % auf die ersten 360 € Eigenbeitrag, weitere 25 % auf 1 440 € — maximal 540 € bei 1 800 € Eigenbeitrag/Jahr. Kinderzulage beitragsproportional: 1 € je 1 € Eigenbeitrag, max. 300 €/Kind (kindergeldberechtigt). Berufseinsteigerbonus 200 € einmalig (vor Vollendung des 25. Lebensjahres). Sonderausgabenabzug: Eigenbeiträge bis 1 800 € zuzüglich Zulageanspruch. Mindesteigenbeitrag 120 €/Jahr für Zulagenanspruch. Einzahlung bis max. 6 840 €/Jahr.
         </div>
       </div>
 
@@ -764,7 +750,7 @@
           <div class="kpi accent">
             <div class="kpi-label">Gesamt-Förderung</div>
             <div class="kpi-value" id="kpi-paid-total">—</div>
-            <div class="kpi-sub">inkl. Migrationsbonus</div>
+            <div class="kpi-sub" id="kpi-paid-total-sub">Zulagen + Steuervorteil</div>
           </div>
         </div>
       </div>
@@ -787,34 +773,40 @@
 </main>
 
 <footer class="disclaimer">
-  <strong>Rechtlicher Hinweis · Internes Tool.</strong> Alle Berechnungen sind unverbindliche Prognosen auf Basis der zum 01.01.2027 in Kraft tretenden Vorschriften des Altersvorsorgereformgesetzes (Bundestagsbeschluss 27.03.2026; zustimmungsbedürftig Bundesrat). Die prognostizierte Ablaufleistung basiert auf konstanter Monatssparrate, unterstellter konstanter Netto-Rendite und Zinseszinseffekt. Tatsächliche Kapitalmarktrenditen können abweichen. Kein Angebot im Sinne des WpHG, ersetzt keine individuelle Beratung. Stand: 04/2026.
+  <strong>Rechtlicher Hinweis · Internes Tool.</strong> Alle Berechnungen sind unverbindliche Prognosen auf Basis der zum 01.01.2027 in Kraft tretenden Vorschriften des Altersvorsorgereformgesetzes (Bundestagsbeschluss 27.03.2026; Zustimmung Bundesrat 08.05.2026). Die prognostizierte Ablaufleistung basiert auf konstanter Monatssparrate, unterstellter konstanter Netto-Rendite und Zinseszinseffekt. Tatsächliche Kapitalmarktrenditen können abweichen. Kein Angebot im Sinne des WpHG, ersetzt keine individuelle Beratung. Stand: 06/2026.
   <br><br>
   <strong>Nur für interne Verwendung durch ERGO Mitarbeiter &amp; vertraglich gebundene Berater.</strong> Die Anwendung speichert keine Eingaben und überträgt keine Daten.
 </footer>
 
 <script>
 /* =======================================================================
-   Altersvorsorgedepot Förder-Rechner v1.4 · Calculation Engine
-   Grundlage: Altersvorsorgereformgesetz (Bundestagsbeschluss 27.03.2026)
-   Änderungen v1.4: Migrationsbonus 150 € (vorher 250 €);
-                    Berufseinsteiger-Bonus entfernt;
-                    Script-Ende wiederhergestellt (Bug v1.3).
+   Altersvorsorgedepot Förder-Rechner v1.5 · Calculation Engine
+   Grundlage: Altersvorsorgereformgesetz (Bundestag 27.03.2026,
+              Zustimmung Bundesrat 08.05.2026) — finale Fassung.
+   Änderungen v1.5: Migrationsbonus entfernt (nicht im finalen Gesetz);
+                    Berufseinsteigerbonus 200 € (u25) wieder aufgenommen;
+                    Kinderzulage beitragsproportional (1 €/€, max. 300 €/Kind);
+                    Sonderausgabenabzug: 1 800 € Eigenbeitrag + Zulageanspruch
+                    (vorher pauschal 3 000 €);
+                    Nur noch Basisprodukt (Premium-Toggle entfernt).
    ====================================================================== */
 
 "use strict";
 
 const PARAMS = Object.freeze({
-  grundStufe1Satz:      0.50,
-  grundStufe1Limit:     360,
-  grundStufe2Satz:      0.25,
-  grundStufe2Limit:     1800,
-  grundZulageMax:       540,
+  grundStufe1Satz:        0.50,
+  grundStufe1Limit:       360,
+  grundStufe2Satz:        0.25,
+  grundStufe2Limit:       1800,
+  grundZulageMax:         540,
 
-  kinderzulage:         300,
-  mindesteigenbeitrag:  120,
-  sonderausgabenMax:    3000,
-  einzahlungMax:        6840,
-  migrationsbonus:      150
+  kinderzulageSatz:       1.00,   // 1 € Zulage je 1 € Eigenbeitrag …
+  kinderzulageMax:        300,    // … bis max. 300 €/Kind/Jahr
+  mindesteigenbeitrag:    120,
+  sonderausgabenEigenMax: 1800,   // abzugsfähige Eigenbeiträge (+ Zulageanspruch)
+  einzahlungMax:          6840,
+  berufseinsteigerBonus:  200,    // einmalig, vor Vollendung des 25. Lebensjahres
+  berufseinsteigerAlter:  25
 });
 
 const state = {
@@ -825,8 +817,7 @@ const state = {
   tax: 30,
   product: "basis",
   contribution: 150,
-  returnPct: 5,
-  migration: true
+  returnPct: 5
 };
 
 const fmtEur = n => {
@@ -854,11 +845,19 @@ function calcFoerderung(s) {
   const zulageBerechtigt = eigenbeitragJahr >= PARAMS.mindesteigenbeitrag;
 
   const grundzulage  = zulageBerechtigt ? berechneGrundzulage(eigenbeitragJahr) : 0;
-  const kinderzulage = zulageBerechtigt ? PARAMS.kinderzulage * s.kids : 0;
+  // Kinderzulage beitragsproportional: 1 € je 1 € Eigenbeitrag, max. 300 €/Kind
+  const kinderzulage = zulageBerechtigt
+      ? Math.min(eigenbeitragJahr * PARAMS.kinderzulageSatz, PARAMS.kinderzulageMax) * s.kids
+      : 0;
   const zulagenSumme = grundzulage + kinderzulage;
 
-  // Sonderausgabenabzug: Eigenbeitrag + Zulagen, gedeckelt auf 3 000 €
-  const sonderausgaben = Math.min(eigenbeitragJahr + zulagenSumme, PARAMS.sonderausgabenMax);
+  // Berufseinsteigerbonus: einmalig 200 €, vor Vollendung des 25. Lebensjahres
+  const einmalBonus = (zulageBerechtigt && s.age < PARAMS.berufseinsteigerAlter)
+      ? PARAMS.berufseinsteigerBonus
+      : 0;
+
+  // Sonderausgabenabzug: Eigenbeiträge bis 1 800 € zuzüglich Zulageanspruch
+  const sonderausgaben = Math.min(eigenbeitragJahr, PARAMS.sonderausgabenEigenMax) + zulagenSumme;
   const steuervorteil  = sonderausgaben * (s.tax / 100);
 
   // Günstigerprüfung: Finanzamt erstattet nur den über die Zulagen hinausgehenden Betrag
@@ -872,7 +871,7 @@ function calcFoerderung(s) {
   return {
     eigenbeitragJahr,
     zulageBerechtigt,
-    grundzulage, kinderzulage, zulagenSumme,
+    grundzulage, kinderzulage, zulagenSumme, einmalBonus,
     steuervorteil, zusaetzlicheSteuer, sonderausgaben,
     gesamtbeitrag, foerderQuote,
     nettoAufwand: eigenbeitragJahr - zusaetzlicheSteuer
@@ -893,12 +892,12 @@ function calcFV(s, f, renditePct) {
       ? f.zulagenSumme * jahre
       : f.zulagenSumme * ((Math.pow(1 + rJahr, jahre) - 1) / rJahr);
 
-  const fvMig = s.migration ? PARAMS.migrationsbonus * Math.pow(1 + rJahr, jahre) : 0;
+  const fvBonus = f.einmalBonus > 0 ? f.einmalBonus * Math.pow(1 + rJahr, jahre) : 0;
 
   return {
     jahre, monate,
-    fvEigen, fvZul, fvMig,
-    fvGesamt: fvEigen + fvZul + fvMig,
+    fvEigen, fvZul, fvBonus,
+    fvGesamt: fvEigen + fvZul + fvBonus,
     eingezahltEigen: s.contribution * monate,
     eingezahltZul:   f.zulagenSumme * jahre,
     kumSteuer:       f.zusaetzlicheSteuer * jahre
@@ -945,7 +944,7 @@ function render() {
     addRow("Grundzulage" + (f.grundzulage < PARAMS.grundZulageMax ? " (gestaffelt)" : ""),
            "+ " + fmtEur(f.grundzulage));
     if (state.kids > 0) {
-      addRow(`Kinderzulage (${state.kids} × 300 €)`, "+ " + fmtEur(f.kinderzulage));
+      addRow(`Kinderzulage (${state.kids} × bis 300 €)`, "+ " + fmtEur(f.kinderzulage));
     }
   } else {
     addRow("Zulagen", "— (Mindesteigenbeitrag 120 €/Jahr nicht erreicht)", "subtle");
@@ -973,7 +972,7 @@ function render() {
     minHint.style.display = "none";
   }
 
-  document.getElementById("migration-notice").style.display = state.migration ? "block" : "none";
+  document.getElementById("bonus-notice").style.display = f.einmalBonus > 0 ? "block" : "none";
   document.getElementById("years-label").textContent = state.retire - state.age;
 
   // Szenarien
@@ -1019,8 +1018,11 @@ function render() {
   document.getElementById("kpi-paid-zul").textContent = fmtEur(main.eingezahltZul);
   document.getElementById("kpi-paid-tax").textContent = fmtEur(main.kumSteuer);
   document.getElementById("kpi-paid-total").textContent = fmtEur(
-      main.eingezahltZul + main.kumSteuer + (state.migration ? PARAMS.migrationsbonus : 0)
+      main.eingezahltZul + main.kumSteuer + f.einmalBonus
   );
+  document.getElementById("kpi-paid-total-sub").textContent = f.einmalBonus > 0
+      ? "Zulagen + Steuer + 200 € Bonus"
+      : "Zulagen + Steuervorteil";
 
   // Beraterhinweise
   const hints = [];
@@ -1032,8 +1034,12 @@ function render() {
     hints.push(`Grundzulage noch nicht voll — <strong>+${fmtEur(fehlend)}/Jahr</strong> (ca. ${Math.ceil(fehlend/12)} €/Mo) bringen die volle Zulage von 540 €.`);
   }
 
-  if (state.kids >= 1) {
-    hints.push(`<strong>${fmtEur(PARAMS.kinderzulage * state.kids)}</strong> Kinderzulage p.a. — kein anderes Anlage-Produkt bietet das. Stark bei Familien-Beratung.`);
+  if (state.kids >= 1 && f.kinderzulage > 0) {
+    hints.push(`<strong>${fmtEur(f.kinderzulage)}</strong> Kinderzulage p.a. — kein anderes Anlage-Produkt bietet das. Stark bei Familien-Beratung.`);
+  }
+
+  if (f.einmalBonus > 0) {
+    hints.push(`Kunde ist unter 25 → <strong>Berufseinsteigerbonus 200 € einmalig</strong> — gilt nur bei Abschluss vor dem 25. Geburtstag. Starkes Argument, jetzt zu starten.`);
   }
 
   if (state.tax >= 35) {
@@ -1044,12 +1050,10 @@ function render() {
     hints.push(`Lange Laufzeit (${state.retire - state.age} Jahre) → <strong>Zinseszins dominiert</strong>. Früh starten ist wichtiger als hoch sparen.`);
   }
 
-  if (state.migration) {
-    hints.push(`Migrationsbonus 150 € gilt nur <strong>bis 31.12.2028</strong> — Verknappungs-Argument im Riester-Übertritts-Gespräch.`);
-  }
+  hints.push(`Riester-Bestandskunden können <strong>förderunschädlich wechseln</strong> — bisherige Förderung muss nicht zurückgezahlt werden. Guter Aufhänger im Übertritts-Gespräch.`);
 
-  if (f.eigenbeitragJahr > PARAMS.sonderausgabenMax) {
-    hints.push(`Beitrag übersteigt Steuer-Höchstbetrag (3 000 €). Die zusätzliche Einzahlung ist förderfrei, aber <strong>im Depot trotzdem sinnvoll</strong> — steuerfreie Vermögensansammlung bis 6 840 €/Jahr.`);
+  if (f.eigenbeitragJahr > PARAMS.grundStufe2Limit) {
+    hints.push(`Beitrag übersteigt den geförderten Höchstbetrag (1 800 €). Die zusätzliche Einzahlung ist förderfrei, aber <strong>im Depot trotzdem sinnvoll</strong> — Einzahlung bis 6 840 €/Jahr möglich.`);
   }
 
   if (f.foerderQuote >= 40) {
@@ -1103,22 +1107,7 @@ function bindInputs() {
     state.contribution = clamp(+e.target.value || 0, 0, Math.floor(PARAMS.einzahlungMax / 12));
     render();
   });
-  byId("migration").addEventListener("change", e => { state.migration = e.target.checked; render(); });
-
-  /* Produkt-Segment (Basis aktiv, Premium gesperrt) */
-  document.querySelectorAll("#product-toggle button[data-product]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      if (btn.disabled) return;
-      document.querySelectorAll("#product-toggle button").forEach(b => {
-        b.classList.remove("active");
-        b.setAttribute("aria-pressed", "false");
-      });
-      btn.classList.add("active");
-      btn.setAttribute("aria-pressed", "true");
-      state.product = btn.dataset.product;
-      render();
-    });
-  });
+  /* Produkt: nur noch Basis — kein Toggle erforderlich */
 
   /* Renditeerwartung-Segment */
   document.querySelectorAll("#return-toggle button[data-return]").forEach(btn => {
@@ -1143,7 +1132,7 @@ function bindInputs() {
     Object.assign(state, {
       income: 48000, age: 35, retire: 67, kids: 1,
       tax: 30, product: "basis",
-      contribution: 150, returnPct: 5, migration: true
+      contribution: 150, returnPct: 5
     });
     byId("income").value       = state.income;
     byId("age").value          = state.age;
@@ -1151,15 +1140,9 @@ function bindInputs() {
     byId("kids").value         = state.kids;
     byId("tax").value          = state.tax;
     byId("contribution").value = state.contribution;
-    byId("migration").checked  = state.migration;
 
     document.querySelectorAll("#return-toggle button").forEach(b => {
       const on = +b.dataset.return === state.returnPct;
-      b.classList.toggle("active", on);
-      b.setAttribute("aria-pressed", on ? "true" : "false");
-    });
-    document.querySelectorAll("#product-toggle button").forEach(b => {
-      const on = b.dataset.product === state.product && !b.disabled;
       b.classList.toggle("active", on);
       b.setAttribute("aria-pressed", on ? "true" : "false");
     });
@@ -1176,3 +1159,4 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
+                                                                                                                            
